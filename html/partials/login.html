@@ -1,0 +1,33 @@
+<!-- login partial, controller is LoginController --> 
+<div class="ng-cloak cdm-login">
+  <div class="loginform" ng-show="!loading">
+	<form class="form-horizontal">
+	  <div class="login-header">
+		<h3>please log in</h3>
+	  </div>
+	  <div class="login-body">
+		<div class="control-group">
+		  <label class="control-label" for="#login_username">username:</label>
+		  <div class="controls">
+			<input type="text" id="login_username" name="username" class="username_field" focus placeholder="< username > " ng-model="_login_username"></input>
+		  </div>
+		</div>
+		<div class="control-group">
+		  <label class="control-label" for="#login_password">password:</label>
+		  <div class="controls">
+			<input type="password" id="login_password" name="password" class="password_field" placeholder="< password >" ng-model="_login_password">
+		  </div>
+		</div>
+	  </div>
+	  <div class="modal-footer">
+		<div class='error' ng-show='error' ng-bind-html-unsafe='error'></div>
+		<div class="spinner" ng-show="loading > 0">
+		  <div ng-repeat="i in u.range(12)" class="bar{{ i + 1 }}"></div>
+		</div>		  
+		<a class="btn" data-dismiss="modal" aria-hidden="true">Cancel</a>
+		<input type="submit" class="btn btn-primary" value="Log in" ng-click="login(_login_username,_login_password)"></input>
+	  </div>
+	</form>
+  </div>
+</div>
+

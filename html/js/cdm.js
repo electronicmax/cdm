@@ -12,6 +12,7 @@ var app = angular
 			.when('/people/:personId/add/property', { templateUrl: 'partials/add_property.html', controller:'AddProperty'})
 			.when('/people/:personId/add/measurement', { templateUrl: 'partials/add_measurement.html', controller:'AddMeasurement'})
 			.when('/people/:personId/:viewID', { templateUrl: 'partials/view.html', controller:'ViewController'})
+			.when('/test', { templateUrl: 'partials/test.html', controller:'TestController'})		
 			.when('/login', { templateUrl: 'partials/login.html', controller:'LoginController'})
 			.otherwise({redirectTo:'/people'});
 	})
