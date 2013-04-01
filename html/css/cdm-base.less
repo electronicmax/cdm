@@ -42,8 +42,6 @@ input[type=text],input[type=password] {
   border: 1px solid rgba(200,200,200,0.1);
   background:rgba(240,240,240,0.2);
   border-radius:6px;
-  margin: 10px 40px 0px 40px;
-  padding: 8px;
   opacity:1.0;
   &.ui-animate {
 	  transition: all 0s ease;
@@ -51,6 +49,31 @@ input[type=text],input[type=password] {
 	  -moz-transition: all 0s ease;
 	  -webkit-transition: all 0s ease;
 	  opacity: 0 !important;
+  }
+  .add-user-btn {
+	  font-family:"Julius";
+	  position:absolute;
+	  right:20px;
+	  top:40px;
+	  font-size:18pt;
+	  padding:5px 10px 5px 10px;
+	  border-top:none;
+	  box-shadow: inset 0px 10px 10px #eee;
+	  z-index:10;	  
+  }
+  .body {
+	  margin: 80px 0px 0px 0px;
+	  z-index:-1;
+  }
+  #new-user-accordion {
+	  color:white;
+	  background-image:url('../imgs/grey_wash_wall.png');
+	  background-repeat:repeat;
+	  width:100%;
+	  box-shadow: inset 0px 10px 10px #333, inset 0px -10px 10px #333;
+	  .inner {
+		  padding:20px 50px 40px 20px;
+	  }
   }  
 }
 
@@ -74,6 +97,7 @@ input[type=text],input[type=password] {
 	  // max-height:0px !important;
 	  opacity: 0 !important;
 	  // padding: 0 5px !important;
-  }  
+  }
+
 }
 

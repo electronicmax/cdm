@@ -1,7 +1,11 @@
 <div class="people" ui-animate>
-  <h1>hello {{ username }}</h1>
-  <div class="spinner" ng-show="loading > 0">
-	<div ng-repeat="i in u.range(12)" class="bar{{ i + 1 }}"></div>
-  </div>
+  <!-- add new person button -->
+  <div class="accordion-toggle btn add-user-btn" data-toggle="collapse" href="#new-user-accordion">+</div>
+  <div id="new-user-accordion" class="accordion-body collapse">
+	<div class="inner">
+	  <h4>add a new person</h4>
+	  <a class="accordion-toggle btn" data-toggle="collapse" href="#new-user-accordion">cancel<a>
+	</div>
+  </div>  
 </div>
 
