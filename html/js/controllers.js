@@ -28,6 +28,7 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 	_webbox_controller_login(webbox).then(function(user) {
 		// logged in!
 		var u = $scope.u = webbox.u;
+		store.toolbar.setVisible(true);		
 		safe_apply($scope,function() {
 			$scope.username = user;
 			$scope.loading = 0;
@@ -61,11 +62,14 @@ function LoginController($scope, $location, webbox) {
 		throw new RuntimeError('webbox not initialising properly');
 	};
 	webbox.loaded.then(function(webbox) {
+		console.log('webbox loaded then ');
 		var u = $scope.u = webbox.u;
-		store = webbox.store;
-		// webbox.toolbar.setVisible(false);
+		window.webbox = webbox;
+		store = window.store = webbox.store;		
+		store.toolbar.setVisible(false);
 		safe_apply($scope, function() { $scope.loading = 0; });
 		store.logout();
+		console.log('logout ');
 	});	
 }
 
