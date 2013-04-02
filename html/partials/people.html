@@ -1,6 +1,7 @@
 <div class="people" ui-animate>
   <!-- add new person button -->
   <div class="accordion-toggle btn add-user-btn" data-toggle="collapse" href="#new-user-accordion">+</div>
+  <!-- new user accordions --> 
   <div id="new-user-accordion" class="accordion-body collapse">
 	<div class="inner container-fluid">
 	  <h4>register a new person</h4>
@@ -43,11 +44,16 @@
 		  <h2> {{ new_person_model.firstname }} {{ new_person_model.middlename }} {{ new_person_model.lastname }} </h2>
 		  <p>  age: {{ compute_age(new_person_model.birthday) }} </p>
 		  <p>  gender: {{ new_person_model.gender }} </p>
-		  <a class="btn" data-toggle="collapse" href="#new-user-accordion">cancel<a>		  
+		  <a class="btn" data-toggle="collapse" href="#new-user-accordion">Cancel<a>
+		  <a class="btn btn-primary" href="#new-user-accordion" onclick="create_cb()">Register<a>		  		  			  
 		</div>
 	  </div>
-
 	</div>
-  </div>  
+  </div><!-- new user accordion -->
+  <!-- existing users --> 
+  <div class="person_list">
+	<div class="person" ng-repeat="person in people">
+	</div>
+  </div>
 </div>
 

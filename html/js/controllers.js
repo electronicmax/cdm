@@ -24,7 +24,7 @@ function _webbox_controller_login(webbox) {
 }
 function PeopleController($scope, $routeParams, $location, webbox) {
 	// check to see if already logged in
-
+	// new person stuff =================================================
 	$scope.new_person_input_fields = [
 		{ id: 'firstname', label: "given name", placeholder: "given name" },
 		{ id: 'middlename', label: "middle name", placeholder: "middle name" },		
@@ -54,24 +54,8 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 			child:'imgs/people/female-child.png'
 		}
 	};
-
 	$scope.new_person_model = {};
 	safe_apply($scope, function() { $scope.loading = 1; });	
-	_webbox_controller_login(webbox).then(function(user) {
-		// logged in!
-		var u = $scope.u = webbox.u;
-		store.toolbar.setVisible(true);		
-		safe_apply($scope,function() {
-			$scope.username = user;
-			$scope.loading = 0;
-		});
-		webbox.store.on('logout', function() {
-			safe_apply($scope, function() { $location.path('/login'); });
-		});
-	}).fail(function() {
-		webbox.u.log('not logged in redirecting ');
-		safe_apply($scope, function() { $location.path('/login'); });
-	});
 	$scope.compute_age = function(bday) {
 		var bday_long = new Date(bday).valueOf();
 		if (bday_long && bday_long.valueOf() > 0) {
@@ -80,21 +64,40 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 			return years;
 		}
 		return '???';
-	};
-	
+	};	
 	$scope.determine_portrait = function() {
-		var new_person_model = $scope.new_person_model;
-		var age = $scope.compute_age(new_person_model.birthday);
-		console.log(' birthdate ', new_person_model.birthday, ' age ', age);
-		var category = (age < 8) ? 'child' : 'adult';
-		var gender = new_person_model.gender && $scope.new_person_default_portraits[new_person_model.gender] ? new_person_model.gender : 'Female';
-		console.log('- age ', category, ' - gender ', gender);
-		var photo = new_person_model.photo || $scope.new_person_default_portraits[gender][category];
-		console.log('returning portrait ', photo);
+		var new_person_model = $scope.new_person_model,
+			age = $scope.compute_age(new_person_model.birthday),
+			category = (age < 8) ? 'child' : 'adult',
+			gender = new_person_model.gender && $scope.new_person_default_portraits[new_person_model.gender] ? new_person_model.gender : 'Female',
+			photo = new_person_model.photo || $scope.new_person_default_portraits[gender][category];
 		return photo;
 	};
-	
-
+	$scope.create_cb = function() {
+		// takes $scope.new_person_model and commits them to the
+		create_new_person($scope.new_person_model);
+		safe_apply(function () { $scope.new_person_model = {}; });
+	};
+	var create_new_person = function(model) {
+		
+	};
+	$scope._initialise = function() {
+		// loads up people from our store and
+		
+	};	
+	_webbox_controller_login(webbox).then(function(user) {
+		// logged in!
+		var u = $scope.u = webbox.u;
+		store.toolbar.setVisible(true);		
+		safe_apply($scope,function() {
+			$scope.username = user;
+			$scope.loading = 0;
+		});
+		webbox.store.on('logout', function() {	safe_apply($scope, function() { $location.path('/login'); });	});
+	}).fail(function() {
+		webbox.u.log('not logged in redirecting ');
+		safe_apply($scope, function() { $location.path('/login'); });
+	});		
 }
 
 function LoginController($scope, $location, webbox) {
