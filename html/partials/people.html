@@ -6,10 +6,10 @@
 	<div class="inner container-fluid">
 	  <h4>register a new person</h4>
 	  <div class="row">
-		<div class="span6">
+		<div class="span5">
 		  <form class="form-horizontal">
 			<div class="control-group" ng-repeat="field in new_person_input_fields">
-			  <label class="control-label" for="#new_person_{{ field.id }}" ng-bind-html-unsafe="field.label"></label>
+			  <label class="control-label {{ field.required }}" for="#new_person_{{ field.id }}" ng-bind-html-unsafe="field.label"></label>
 			  <div class="controls">
 				<input type="text" id="new_person_{{ field.id }}" class="username_field" focus placeholder="{{ field.placeholder }}" ng-model="new_person_model[field.id]">
 			  </div>
@@ -41,11 +41,15 @@
 		</div>
 		<div class="span3 person_profile">
 		  <img class="portrait" ng-src="{{ determine_portrait() }}">
-		  <h2> {{ new_person_model.firstname }} {{ new_person_model.middlename }} {{ new_person_model.lastname }} </h2>
-		  <p>  age: {{ compute_age(new_person_model.birthday) }} </p>
-		  <p>  gender: {{ new_person_model.gender }} </p>
-		  <a class="btn" data-toggle="collapse" href="#new-user-accordion">Cancel<a>
-		  <a class="btn btn-primary" href="#new-user-accordion" onclick="create_cb()">Register<a>		  		  			  
+		  <div class="text">
+			<h4> {{ new_person_model.firstname || '&nbsp'; }} {{ new_person_model.middlename }} {{ new_person_model.lastname }} </h2>
+			<p><label>age: </label>{{ compute_age(new_person_model.birthday) }} </p>
+			<p><label>gender:</label> {{ new_person_model.gender }} </p>
+		  </div>
+		  <div class='buttons'>
+			<a class="btn" data-toggle="collapse" href="#new-user-accordion">Cancel<a>
+			<a class="btn btn-primary" href="#new-user-accordion" onclick="create_cb()">Register<a>
+		  </div>
 		</div>
 	  </div>
 	</div>

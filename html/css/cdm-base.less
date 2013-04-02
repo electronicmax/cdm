@@ -73,14 +73,15 @@ input[type=text],input[type=password] {
   }
   #new-user-accordion {
 	  color:black;
+	  .required { color: red; }
 	  // background-image:url('../imgs/white_paperboard.png');
 	  // background-repeat:repeat;
 	  background:white;
 	  width:110%;
 	  margin:-23px 10px 0px -10px;
-	  box-shadow: inset 0px 8px 15px #aaa, inset 0px -10px 15px #ddd;
+	  box-shadow: inset 0px 8px 15px #999, inset 0px -8px 15px #999;
 	  .inner {
-		  padding:20px 50px 40px 20px;
+		  padding:20px 50px 40px 50px;	  
 	  }
 	  input[type=date] {
 		  font:-webkit-small-control !important;
@@ -93,14 +94,36 @@ input[type=text],input[type=password] {
 		  height:30px;
 	  }
 	  .person_profile {
+		  box-shadow: inset 0px 10px 10px #eee;		  
+		  border-radius:16px;
+		  position:relative;
+		  overflow:hidden;
+		  background-image:url('../imgs/white_paperboard.png');
+		  background-repeat:repeat;		  
 		  border:1px solid #eee;
-		  height:400px;
-		  width:300px;
-		  padding:20px;
+		  height:200px;
+		  width:462px;
+		  padding:16px;
 		  .portrait {
+			  background:white;
+			  width:140px;
 			  border:1px solid #eee;
-			  padding:6px;
-			  width:260px;
+			  padding:8px 16px 8px 8px;
+			  margin:0px 30px 0px 0px;
+			  box-shadow: 0px 4px 15px #999;			  
+			  
+		  }
+		  .text {
+			  position:absolute;
+			  top:16px;
+			  right:16px;
+			  width:267px;
+			  background:rgba(255,255,255,0.2);
+		  }
+		  .buttons {
+			  position:absolute;
+			  bottom:16px;
+			  right:16px;
 		  }
 	  }	  
   }  

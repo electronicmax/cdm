@@ -26,9 +26,9 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 	// check to see if already logged in
 	// new person stuff =================================================
 	$scope.new_person_input_fields = [
-		{ id: 'firstname', label: "given name", placeholder: "given name" },
-		{ id: 'middlename', label: "middle name", placeholder: "middle name" },		
-		{ id: 'lastname', label: "family name", placeholder: "family name" },
+		{ id: 'firstname', label: "given name", placeholder: "given name" , required : 'required'},
+		{ id: 'middlename', label: "middle name", placeholder: "middle name"  },		
+		{ id: 'lastname', label: "family name", placeholder: "family name", required : 'required' },
 		{ id: 'displayname', label: "display name", placeholder: "display name" },
 		{ id: 'nhs', label: "NHS #", placeholder: "#XXX-XXX-XXXX" },
 		{ id: 'ni', label: "NI #", placeholder: "#XXXXXXXXX" },
