@@ -2,9 +2,53 @@
   <!-- add new person button -->
   <div class="accordion-toggle btn add-user-btn" data-toggle="collapse" href="#new-user-accordion">+</div>
   <div id="new-user-accordion" class="accordion-body collapse">
-	<div class="inner">
-	  <h4>add a new person</h4>
-	  <a class="accordion-toggle btn" data-toggle="collapse" href="#new-user-accordion">cancel<a>
+	<div class="inner container-fluid">
+	  <h4>register a new person</h4>
+	  <div class="row">
+		<div class="span6">
+		  <form class="form-horizontal">
+			<div class="control-group" ng-repeat="field in new_person_input_fields">
+			  <label class="control-label" for="#new_person_{{ field.id }}" ng-bind-html-unsafe="field.label"></label>
+			  <div class="controls">
+				<input type="text" id="new_person_{{ field.id }}" class="username_field" focus placeholder="{{ field.placeholder }}" ng-model="new_person_model[field.id]">
+			  </div>
+			</div>
+		  </form>
+		</div><!-- span 6 -->
+		<div class="span3">
+		  <div class="control-group">
+			<label class="control-label" for="#bday">Birth date</label>
+			<div class="controls">
+			  <input id="bday" type="date" name="bday" ng-model="new_person_model.birthday">
+			</div>
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="#gender">Gender</label>
+			<div id="gender" class="controls">
+			  <label class="radio">
+	 			<input type="radio" ng-model="new_person_model.gender" value="Female" class="radio_buttons required">Female</label>
+			  <label class="radio">
+				<input type="radio" ng-model="new_person_model.gender" value="Male" class="radio_buttons required">Male</label>
+			</div>
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="#modules">Modules</label>
+			<select ui-select2 ng-model="new_person_model.modules" multiple style="width:200px; min-height:80px">
+			  <option ng-repeat="module in intervention_modules" value="{{ module.id }}">{{ module.name }}</option>
+			</select>
+		  </div>		  
+		</div>
+		<div class="span3">		
+		  
+		  <h2> {{ new_person_model.firstname }} {{ new_person_model.middlename }} {{ new_person_model.lastname }} </h2>
+		  <p>  {{ new_person_model.bday }} </p>
+		  <p>  {{ new_person_model.gender }} </p>
+		  
+		  <a class="accordion-toggelnews
+news btn" data-toggle="collapse" href="#new-user-accordion">cancel<a>		  
+		</div>
+	  </div>
+
 	</div>
   </div>  
 </div>

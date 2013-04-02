@@ -24,6 +24,29 @@ function _webbox_controller_login(webbox) {
 }
 function PeopleController($scope, $routeParams, $location, webbox) {
 	// check to see if already logged in
+
+	$scope.new_person_input_fields = [
+		{ id: 'firstname', label: "given name", placeholder: "given name" },
+		{ id: 'middlename', label: "middle name", placeholder: "middle name" },		
+		{ id: 'lastname', label: "family name", placeholder: "family name" },
+		{ id: 'displayname', label: "display name", placeholder: "display name" },
+		{ id: 'nhs', label: "NHS #", placeholder: "#XXX-XXX-XXXX" },
+		{ id: 'ni', label: "NI #", placeholder: "#XXXXXXXXX" }
+	];
+
+	$scope.intervention_modules = [
+		{ id: 'cdm', name: 'Child development' },
+		{ id: 'pdb', name: 'Prediabetes' },
+		{ id: 'mtcbt1', name: 'Mental Health CBT 1' },
+		{ id: 'mtcbt2', name: 'Mental Health CBT 2' },		
+		{ id: 'dt1', name: 'Diabetes Type 1' },
+		{ id: 'dt2', name: 'Diabetes Type 2' },		
+		{ id: 'gf', name: 'General Fitness' },
+		{ id: 'icd', name: 'Implantable Cardiac Device (ICD)' }		
+	];
+	
+	$scope.new_person_model = {};
+	
 	safe_apply($scope, function() { $scope.loading = 1; });	
 	_webbox_controller_login(webbox).then(function(user) {
 		// logged in!
