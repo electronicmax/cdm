@@ -25,6 +25,13 @@ function _webbox_controller_login(webbox) {
 function PeopleController($scope, $routeParams, $location, webbox) {
 	// check to see if already logged in
 	// new person stuff =================================================
+
+	var cdm_box;
+	var loading_d = new $.Deferred();
+	var error = function(s) { console.error(s); };
+
+	$scope.people = [];
+	
 	$scope.new_person_input_fields = [
 		{ id: 'firstname', label: "given name", placeholder: "given name" , required : 'required'},
 		{ id: 'middlename', label: "middle name", placeholder: "middle name"  },		
@@ -76,15 +83,19 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 	$scope.create_cb = function() {
 		// takes $scope.new_person_model and commits them to the
 		create_new_person($scope.new_person_model);
-		safe_apply(function () { $scope.new_person_model = {}; });
+		safe_apply($scope, function () { $scope.new_person_model = {}; });
 	};
 	var create_new_person = function(model) {
-		
+		var id = model.firstname + "_" + model.middlename + "_" + model.lastname;
+		console.log('id ', name);
+		cdm_box.get_obj(id).then(function(obj) {
+			obj.set(_(model).chain().clone().extend({'type':'person'}).value());
+			obj.save();
+			safe_apply($scope, function() { $scope.people.push(obj); });
+		}).fail(function(err) {
+			error(err);
+		});
 	};
-	$scope._initialise = function() {
-		// loads up people from our store and
-		
-	};	
 	_webbox_controller_login(webbox).then(function(user) {
 		// logged in!
 		var u = $scope.u = webbox.u;
@@ -94,6 +105,34 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 			$scope.loading = 0;
 		});
 		webbox.store.on('logout', function() {	safe_apply($scope, function() { $location.path('/login'); });	});
+		var box = webbox.store.get_or_create_box('cdm');
+
+		var load_people_from_box = function(box) {
+			// todo replace with query::
+			u.when(box.get_obj_ids().map(function(id)  { return box.get_obj(id); }))
+				.then(function() {
+					var objs = _.toArray(arguments).filter(function(x) {
+						console.log('checking x ', x);
+						return x.get('type') && x.get('type').indexOf('person') >= 0;
+					});
+					safe_apply($scope, function() {
+						console.log('setting people ', objs);
+						$scope.people = $scope.people.concat(objs);
+					});
+				}).fail(function(err) {  error('error ', err);	});
+
+		};
+		
+		// fetch box
+		box.fetch().then(function() {
+			cdm_box = box; load_people_from_box(box); 
+		}).fail(function() {
+			box.save().then(function() {
+				box.fetch().then(function() {
+					cdm_box = box; load_people_from_box(box); 
+				});
+			});
+		});
 	}).fail(function() {
 		webbox.u.log('not logged in redirecting ');
 		safe_apply($scope, function() { $location.path('/login'); });
@@ -137,4 +176,9 @@ function TestController($scope, $timeout, webbox) {
 		$timeout(f, 1000);
 	};
 	f();
+}
+
+
+function PersonController($scope, webbox, $routeParams){
+	console.log('rout params ', $routeParams);
 }

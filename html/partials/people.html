@@ -48,7 +48,7 @@
 		  </div>
 		  <div class='buttons'>
 			<a class="btn" data-toggle="collapse" href="#new-user-accordion">Cancel<a>
-			<a class="btn btn-primary" href="#new-user-accordion" onclick="create_cb()">Register<a>
+			<a class="btn btn-primary" data-toggle="collapse" ng-click="create_cb()">Register<a>
 		  </div>
 		</div>
 	  </div>
@@ -56,8 +56,13 @@
   </div><!-- new user accordion -->
   <!-- existing users --> 
   <div class="person_list">
-	<div class="person" ng-repeat="person in people">
-	</div>
+	<ul>
+	  <li ng-repeat="person in people">
+		<div class="person_record" data-id="{{ person.id }}">
+		  <img class="photo" ui-if="person.get('photo')[0]">
+		  <a href="#/people/{{ person.id }}"><h1 ng-bind-html-unsafe="person.get('firstname')[0]"></h1></a>
+		</div>
+	</ul>
   </div>
 </div>
 
