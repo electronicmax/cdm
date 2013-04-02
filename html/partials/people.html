@@ -38,14 +38,12 @@
 			</select>
 		  </div>		  
 		</div>
-		<div class="span3">		
-		  
+		<div class="span3 person_profile">
+		  <img class="portrait" ng-src="{{ determine_portrait() }}">
 		  <h2> {{ new_person_model.firstname }} {{ new_person_model.middlename }} {{ new_person_model.lastname }} </h2>
-		  <p>  {{ new_person_model.bday }} </p>
-		  <p>  {{ new_person_model.gender }} </p>
-		  
-		  <a class="accordion-toggelnews
-news btn" data-toggle="collapse" href="#new-user-accordion">cancel<a>		  
+		  <p>  age: {{ compute_age(new_person_model.birthday) }} </p>
+		  <p>  gender: {{ new_person_model.gender }} </p>
+		  <a class="btn" data-toggle="collapse" href="#new-user-accordion">cancel<a>		  
 		</div>
 	  </div>
 

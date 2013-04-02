@@ -31,9 +31,9 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 		{ id: 'lastname', label: "family name", placeholder: "family name" },
 		{ id: 'displayname', label: "display name", placeholder: "display name" },
 		{ id: 'nhs', label: "NHS #", placeholder: "#XXX-XXX-XXXX" },
-		{ id: 'ni', label: "NI #", placeholder: "#XXXXXXXXX" }
+		{ id: 'ni', label: "NI #", placeholder: "#XXXXXXXXX" },
+		{ id: 'photo', label: "photo", placeholder: "http://..." }
 	];
-
 	$scope.intervention_modules = [
 		{ id: 'cdm', name: 'Child development' },
 		{ id: 'pdb', name: 'Prediabetes' },
@@ -44,9 +44,18 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 		{ id: 'gf', name: 'General Fitness' },
 		{ id: 'icd', name: 'Implantable Cardiac Device (ICD)' }		
 	];
-	
+	$scope.new_person_default_portraits = {
+		Male: {
+			adult:'imgs/people/male-adult.png',
+			child:'imgs/people/male-child.png'
+		},
+		Female: {
+			adult:'imgs/people/female-adult.png',
+			child:'imgs/people/female-child.png'
+		}
+	};
+
 	$scope.new_person_model = {};
-	
 	safe_apply($scope, function() { $scope.loading = 1; });	
 	_webbox_controller_login(webbox).then(function(user) {
 		// logged in!
@@ -63,6 +72,29 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 		webbox.u.log('not logged in redirecting ');
 		safe_apply($scope, function() { $location.path('/login'); });
 	});
+	$scope.compute_age = function(bday) {
+		var bday_long = new Date(bday).valueOf();
+		if (bday_long && bday_long.valueOf() > 0) {
+			var today = new Date().valueOf();
+			var years = Math.floor((today - bday_long)/(1000*60*60*24*365.0));
+			return years;
+		}
+		return '???';
+	};
+	
+	$scope.determine_portrait = function() {
+		var new_person_model = $scope.new_person_model;
+		var age = $scope.compute_age(new_person_model.birthday);
+		console.log(' birthdate ', new_person_model.birthday, ' age ', age);
+		var category = (age < 8) ? 'child' : 'adult';
+		var gender = new_person_model.gender && $scope.new_person_default_portraits[new_person_model.gender] ? new_person_model.gender : 'Female';
+		console.log('- age ', category, ' - gender ', gender);
+		var photo = new_person_model.photo || $scope.new_person_default_portraits[gender][category];
+		console.log('returning portrait ', photo);
+		return photo;
+	};
+	
+
 }
 
 function LoginController($scope, $location, webbox) {
