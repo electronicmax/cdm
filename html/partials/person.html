@@ -1,3 +1,14 @@
 
-<h1> omg person controller </h1>
+<div class='person'>
+  <div class='body'>
+	<h4><a ng-click="go('../')">family</a></h4>
+	<h1>{{ user.get('firstname')[0] }} {{ user.get('middlename')[0] }} {{ user.get('lastname')[0] }} </h1>
+	
+	<h4> modules </h4>
+	<ul>
+	  <li ng-repeat="module in user.get('modules')"> <a href="{{ module.id }}/">{{ module.id }}</a> </li>
+	</ul>
+  </div>
+</div>
+
 

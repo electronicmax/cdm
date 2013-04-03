@@ -76,11 +76,12 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 	_webbox_controller_login(webbox).then(function(user) {
 		// logged in!
 		var u = $scope.u = webbox.u;
-		store.toolbar.setVisible(true);		
+
 		safe_apply($scope,function() {
 			$scope.username = user;
 			$scope.loading = 0;
 		});
+		webbox.store.toolbar.setVisible(true);		
 		webbox.store.on('logout', function() {	safe_apply($scope, function() { $location.path('/login'); });	});
 		var box = webbox.store.get_or_create_box('cdm');
 
