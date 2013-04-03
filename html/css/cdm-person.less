@@ -2,9 +2,9 @@
 	margin:0px; padding:0px;
 	.body {
 		position:relative;
-		margin: 20px 20px 20px 0px;
-		max-width:800px;
-		padding:5px 40px 5px 40px;        
+		margin: 20px 20px 0px 0px;
+		max-width:900px;
+		padding:5px 40px 0px 40px;        
 		.portrait {
 			position:absolute;
 			top:20px;
@@ -16,7 +16,15 @@
 			margin:0px 30px 0px 0px;
 			box-shadow: 0px 4px 15px #999;			  
 		}
+		h1 {
+			padding:0px;
+			line-height:24px !important;
+			margin:0px 0px 0px -4px !important;
+		}			
 	}
+	.edit {
+		font-size:10pt;
+		}
 	background:white;
 	transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
@@ -66,6 +74,19 @@
 			bottom:16px;
 			right:16px;
 		}
-	}	  
+	}
+  #edit-user-accordion {
+	  color:black;
+	  background:white;
+	  width:110%;
+	  margin:0px 10px 0px -10px;
+	  z-index:-1;
+	  box-shadow: inset 0px 8px 15px #999, inset 0px -8px 15px #999;
+	  .inner {
+		  padding:20px 50px 12px 50px;
+		  height:200px;
+	  }
+  }
+	
 }
 
