@@ -1,7 +1,6 @@
 
 function PersonController($scope, $location, webbox, $routeParams){
 
-
 	$scope.go = function(path) {
 		console.log('go event ', path);
 		safe_apply($scope, function() {	$location.path(path); });
