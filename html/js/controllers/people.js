@@ -58,6 +58,14 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 			photo = new_person_model.photo || $scope.new_person_default_portraits[gender][category];
 		return photo;
 	};
+	$scope.send_portrait = function() {
+		var files = $('.portrait-form input[type=file]')[0].files;
+		if (files.length === 0) { var d = u.deferred(); d.resolve(); return d; }
+		var model = $scope.new_person_model,
+			id = "portrait-" + model.firstname + "_" + (model.middlename || '') + "_" + model.lastname;
+		contenttype = $('.portrait-form input[type=file]')[0].files[0].type;
+		return cdm_box.put_file(id, files[0], contenttype);
+    };
 	$scope.create_cb = function() {
 		// takes $scope.new_person_model and commits them to the
 		create_new_person($scope.new_person_model);
@@ -67,7 +75,8 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 		var id = model.firstname + "_" + (model.middlename ? model.middlename : '') + "_" + model.lastname;
 		cdm_box.get_obj(id).then(function(obj) {
 			obj.set(_(model).chain().clone().extend({'type':'person'}).value());
-			obj.save();
+			// debug for now -- obj.save(); --
+			$scope.send_portrait();
 			safe_apply($scope, function() { $scope.people.push(obj); });
 		}).fail(function(err) {
 			error(err);
@@ -111,9 +120,17 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 				});
 			});
 		});
+
+		
 	}).fail(function() {
 		webbox.u.log('not logged in redirecting ');
 		safe_apply($scope, function() { $location.path('/login'); });
-	});		
+	});
+	
+	$('.portrait-form :file').change(function() {
+		var file = this.files[0];
+		console.log('got >> ', file.name, file.size, file.type);
+	});
+
 }
 

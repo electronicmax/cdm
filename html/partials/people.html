@@ -40,7 +40,24 @@
 		  </div>		  
 		</div>
 		<div class="span3 person_profile">
-		  <img class="portrait" ng-src="{{ determine_portrait() }}">
+		  <form class="portrait-form" enctype="multpart/form-data">
+			<div class="fileupload fileupload-new" data-provides="fileupload">
+			  <div class="fileupload-new thumbnail portrait">
+				<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+			  </div>
+			  <div class="portrait fileupload-exists">
+				<div class="fileupload-preview thumbnail"></div>
+				<a href="#" class="fileupload-exists fileupload-remove" data-dismiss="fileupload"><i class="icon-remove"></i></a>
+			  </div>			
+			  <div class="fileuploadbuttons">
+				<span class="btn btn-file">
+				  <span class="fileupload-new"><i class="icon-folder-open"></i></span>
+				  <span class="fileupload-exists"><i class="icon-edit"></i></span>
+				  <input type="file" />
+				</span>			  
+			  </div>
+			</div>
+		  </form>
 		  <div class="text">
 			<h4> {{ new_person_model.firstname || '&nbsp'; }} {{ new_person_model.middlename }} {{ new_person_model.lastname }} </h2>
 			<p><label>age: </label>{{ compute_age(new_person_model.birthday) }} </p>
