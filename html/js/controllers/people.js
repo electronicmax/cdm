@@ -68,11 +68,21 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 		cdm_box.get_obj(id).then(function(obj) {
 			obj.set(_(model).chain().clone().extend({'type':'person'}).value());
 			obj.save();
-			safe_apply($scope, function() { $scope.people.push(obj); });
 		}).fail(function(err) {
 			error(err);
 		});
 	};
+	var load_people_from_box = function(box) {
+		// todo replace with query::
+		if (box === undefined) { box = store.get_box('cdm');  }
+		u.when(box.get_obj_ids().map(function(id)  { return box.get_obj(id); }))
+			.then(function() {
+				var objs = _.toArray(arguments).filter(function(x) {
+					return x.get('type') && x.get('type').indexOf('person') >= 0;
+				});
+				safe_apply($scope, function() {	$scope.people = objs; });
+			}).fail(function(err) {  error('error ', err);	});
+	};	
 	_webbox_controller_login(webbox).then(function(user) {
 		// logged in!
 		var u = $scope.u = webbox.u;
@@ -84,23 +94,11 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 		webbox.store.toolbar.setVisible(true);		
 		webbox.store.on('logout', function() {	safe_apply($scope, function() { $location.path('/login'); });	});
 		var box = webbox.store.get_or_create_box('cdm');
-
-		var load_people_from_box = function(box) {
-			// todo replace with query::
-			u.when(box.get_obj_ids().map(function(id)  { return box.get_obj(id); }))
-				.then(function() {
-					var objs = _.toArray(arguments).filter(function(x) {
-						console.log('checking x ', x);
-						return x.get('type') && x.get('type').indexOf('person') >= 0;
-					});
-					safe_apply($scope, function() {
-						console.log('setting people ', objs);
-						$scope.people = $scope.people.concat(objs);
-					});
-				}).fail(function(err) {  error('error ', err);	});
-
-		};
-		
+		load_people_from_box(box);
+		box.on('obj-add', function() {
+			console.log("OBJECT ADD --");
+			load_people_from_box(box);
+		});
 		// fetch box
 		box.fetch().then(function() {
 			cdm_box = box; load_people_from_box(box); 
