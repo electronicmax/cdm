@@ -1,7 +1,7 @@
 
 <div class='person'>
   <div class='body'>
-	<img class="portrait" ui-if="user.get('photo')[0]" ng-src="{{ user.get('photo')[0] }}"><br>
+	<img class="portrait" ui-if="user.get('photo')[0]" ng-src="{{ user.get('portrait')[0].get_url() }}"><br>
 	<h4><a ng-click="go('../')">family</a></h4>
 	<h1>{{ user.get('firstname')[0] }} {{ user.get('middlename')[0] }} {{ user.get('lastname')[0] }} 	<a class="edit"  data-toggle="collapse" href="#edit-user-accordion">edit <i class="icon-edit"></i></a> </h1>
 
