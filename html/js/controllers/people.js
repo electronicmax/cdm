@@ -66,8 +66,7 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 	$scope.send_portrait = function() {
 		var files = $('.portrait-form input[type=file]')[0].files;
 		if (files.length === 0) { var d = u.deferred(); d.resolve(); return d; }
-		var model = $scope.new_person_model,
-			id = "portrait-" + model.firstname + "_" + (model.middlename || '') + "_" + model.lastname;
+		var model = $scope.new_person_model, id = "portrait-" + model.firstname + "_" + (model.middlename || '') + "_" + model.lastname;
 		contenttype = $('.portrait-form input[type=file]')[0].files[0].type;
 		return cdm_box.put_file(id, files[0], contenttype);
     };
@@ -80,18 +79,15 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 	var create_new_person = function(model) {
 		var id = model.firstname + "_" + (model.middlename || '') + "_" + model.lastname;
 		cdm_box.get_obj(id).then(function(obj) {
-			$scope.send_portrait().then(function() {
+			$scope.send_portrait().then(function(portrait_file) {
+				console.log('got file back >> ', portrait_file);
 				obj.set(_(model).chain().clone().extend(
 					{
 						type:'person',
-						portrait: $scope.has_portrait() ? (new WebBox.File({'@id':id}, {box:cdm_box})) : undefined
+						portrait: portrait_file 
 					}
 				).value());
-				obj.save().then(function() {
-					u.debug("save complete! ");
-				}).fail(function(err) {
-					u.error(err);
-				});
+				obj.save().then(function() {u.debug("save complete! ");	}).fail(function(err) {	u.error(err);});
 				$scope.clear_portrait_form();
 			});
 			safe_apply($scope, function() { $scope.people.push(obj); });
