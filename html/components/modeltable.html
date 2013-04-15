@@ -1,0 +1,11 @@
+<div class="modeltable container">
+  <table class="table table-striped">
+	<tr>
+	  <th colspan="2">{{ model.name || model.id }}</th>
+	</tr>
+	<tr ng-repeat="(key,v) in model.attributes">
+	  <td ng-bind-html-unsafe="key">hello.</td>
+	  <td><input type="text" ng-model="v"></td>
+	</tr>
+  </table>
+</div>

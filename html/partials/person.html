@@ -4,10 +4,10 @@
 	<img class="portrait" ui-if="user.get('portrait')[0]" ng-src="{{ user.get('portrait')[0].get_url() }}"><br>
 	<h4><a ng-click="go('../')">family</a></h4>
 	<h1>{{ user.get('firstname')[0] }} {{ user.get('middlename')[0] }} {{ user.get('lastname')[0] }} 	<a class="edit"  data-toggle="collapse" href="#edit-user-accordion">edit <i class="icon-edit"></i></a> </h1>
-
   </div>	
-  <div id="edit-user-accordion" class="accordion-body collapse">
+  <div id="edit-user-accordion" class="accordion-body">
 	<div class="inner container-fluid">
+	  <modeltable m="user"></modeltable>
 	</div>
   </div>
   <div class='body'>	

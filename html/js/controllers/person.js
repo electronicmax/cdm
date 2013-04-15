@@ -1,11 +1,9 @@
 
 function PersonController($scope, $location, webbox, $routeParams){
-
 	$scope.go = function(path) {
 		console.log('go event ', path);
 		safe_apply($scope, function() {	$location.path(path); });
 	};
-
 	_webbox_controller_login(webbox).then(function(user) {
 		// logged in!
 		var u = $scope.u = webbox.u;
