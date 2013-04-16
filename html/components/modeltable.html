@@ -1,10 +1,13 @@
 <div class="modeltable container">
-  <table class="table table-striped">
+  <table class="table table-condensed">
 	<tr>
 	  <th colspan="2">{{ model.name || model.id }}</th>
 	</tr>
 	<tr ng-repeat="kvobj in uimodel" ui-animate>
-	  <td>
+	  <td class="delspan">
+		<i class="icon-remove" ng-click="delete_property(kvobj)"></i>
+	  </td>	  
+	  <td class="span3">
 		<input type="text" ng-model="kvobj.key" ui-event="{keyup: 'commit_model()'}">
 	  </td>
 	  <td>
@@ -12,7 +15,7 @@
 	  </td>
 	</tr>
 	<tr class="newpropertyrow" ng-click="new_row()">
-	  <td colspan=2 class="newproperty"><i class="icon-add"></i></td>
+	  <td class="newproperty"><i class="icon-plus"></i></td><td>&nbsp;</td>
 	</tr>
   </table>
 </div>

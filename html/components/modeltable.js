@@ -103,7 +103,14 @@ app.directive('modeltable', function() {
 						  });
 					  }
 				  };
-
+				  $scope.delete_property = function(propertyval) {
+					  var model = $scope.model;
+					  var key = propertyval.key;
+					  console.log('unsetting ', key);
+					  model.unset(key);
+					  $scope.uimodel = _($scope.uimodel).without(propertyval);
+					  $scope.commit_model();
+				  };
 				  // initialise
 				  if (boxname) {
 					  box = webbox.store.get_or_create_box(boxname);
