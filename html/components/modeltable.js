@@ -8,38 +8,39 @@ app.directive('modeltable', function() {
 		  templateUrl:'components/modeltable.html',
 		  controller:function($scope, $attrs, webbox) {
 			  webbox.loaded.then(function() {
+
+				  // incoming : $scope.model <- inherited from parent scope via attribute m
+				  // $scope.uimodel <- gets set and manipulated by the ui
+				  // @attrs:
+				  //    box - box name
+				  //    parsechar - character to use to parse
+				  
 				  var u = webbox.u; // backbone model
 				  var parsechar = $attrs.parsechar || ',';
 				  var boxname = $attrs.box, box;
 				  var resolve_fields = ['name', 'label', 'first_name'];
-
-				  
 				  var modeltoview = function(m) {
 					  // makes a ui model
 					  if (m === undefined) { return {}; }				  
-					  return u.dict(_(m.attributes).map(function(vs,k) {
+					  return _(m.attributes).map(function(vs,k) {
 						  if (['@id'].indexOf(k) >= 0) { return; }
-						  return [k, { value: vs.map(_serialise).filter(u.defined).join(parsechar) } ];
-					  }).filter(u.defined));
+						  var vals = vs.map(_serialise).filter(u.defined).join(parsechar);
+						  return ({
+							  key: k,
+							  old_key: k,
+							  value: (vals + ''),
+							  old_val : (vals + '')
+						  });
+					  }).filter(u.defined);
 				  };				  
 				  var update_uimodel = function() {
-					  webbox.safe_apply($scope,	function() {
-						  $scope.uimodel = modeltoview($scope.model);
-					  });
+					  webbox.safe_apply($scope,	function() { $scope.uimodel = modeltoview($scope.model); });
 				  };
-				  if (boxname) {
-					  box = webbox.store.get_or_create_box(boxname);
-					  box.fetch().then(function() {
-						  $scope.loaded = true;
-						  update_uimodel();
-						  $scope.$watch('model', update_uimodel);
-					  }).fail(function(err) { $scope.error = err; });
-				  }				  
 				  // model -> view
 				  var _serialise = function(v) {
 					  if (v instanceof WebBox.Obj || v instanceof WebBox.File) {  return v.name || v.id;	  }
 					  return v.toString();
-				  };
+				  };								 
 				  // view -> model
 				  var parse = function(v) {
 					  // this tries to figure out what the user meant, including resolving
@@ -48,51 +49,71 @@ app.directive('modeltable', function() {
 					  if (!_.isNaN( parseFloat(v) )) { d.resolve(parseFloat(v)); }
 					  if (!_.isNaN( parseInt(v, 10) )) { d.resolve(parseInt(v, 10)); }
 					  if (box) {
-						  if ( box.get_obj_ids().indexOf(v) >= 0 ) {
-							  console.log('getting object ', v);
-							  box.get_obj(v).then(d.resolve).fail(d.reject);
+						  var stripstrv = v.toString().trim();
+						  if ( box.get_obj_ids().indexOf(stripstrv) >= 0 ) {
+							  box.get_obj(stripstrv).then(d.resolve).fail(d.reject);
 						  } else {
 							  // todo: get by names too
 							  var matches = box._objcache().filter(function(obj) {
 								  var fields = resolve_fields.map(function(f) { return obj.get(f); }).filter(u.defined).filter(function(x) { return x.length > 0; });
-								  return fields.indexOf(v) >= 0; 
+								  return fields.indexOf(stripstrv) >= 0; 
 							  });
-							  if (matches.length > 0) {  d.resolve(matches[0]); } else {
-								  d.resolve(v);
-							  }
+							  if (matches.length > 0) { d.resolve(matches[0]); } else {  d.resolve(v);	  }
 						  }
 					  }
 					  return d.promise();
 				  };
-				  var parseview = function(viewobj) {
+				  var parseview = function(viewobj, model) {
 					  // we need to take the textual representations out again
-					  var obj = {}, pdfd = u.deferred();
-					  u.when(_(viewobj).map(function(v,k) {
+					  var pdfd = u.deferred();
+
+					  // delete the changed keys
+					  viewobj.filter(function(x) { return x.old_key !== x.key; })
+						  .map(function(x) {
+							  model.unset(x.old_key);
+							  x.old_key = x.key; // update for next time!
+						  });					  
+					  // now parse out the values
+					  u.when(viewobj.map(function(propertyval) {
+						  var v = propertyval.value, k = propertyval.key;
 						  var d = u.deferred();
-						  u.when(v.value.split(parsechar).map(parse)).then(function() {
-							  obj[k] = _.toArray(arguments);
+						  u.when(v.split(parsechar).map(parse)).then(function() {
+							  model.set(k, _.toArray(arguments));
 							  d.resolve();
-						  });
+						  }).fail(d.reject);
 						  return d.promise();
-					  })).then(function() { pdfd.resolve(obj); }).fail(pdfd.reject);
+					  })).then(function() { pdfd.resolve(model); }).fail(pdfd.reject);
 					  return pdfd.promise();
 				  };
 				  $scope.new_row = function() {
 					  console.log('new _ row ');
 					  var idx = _($scope.uimodel).keys().length + 1;
 					  var new_key = 'property '+idx;
-					  $scope.uimodel[new_key] = { value: '' };
+					  $scope.uimodel.push({ key: new_key, old_key: new_key, value:'', old_val: ''});
 				  };
 				  $scope.commit_model = function() {
+					  var d = u.deferred();
 					  if ($scope.model !== undefined) {
-						  parseview($scope.uimodel).then(function(vals) {
-							  $scope.model.set(vals);
+						  parseview($scope.uimodel, $scope.model).then(function(vals) {
+							  console.log('saving model >> ', $scope.model.attributes);
 							  $scope.model.save();
+						  }).fail(function(err) {
+							  u.error('error committing model ', err);
+							  d.reject(err);
 						  });
 					  }
 				  };
-				  // $scope.$watch('uimodel', commit_model, true);
+
+				  // initialise
+				  if (boxname) {
+					  box = webbox.store.get_or_create_box(boxname);
+					  box.fetch().then(function() {
+						  $scope.loaded = true;
+						  update_uimodel();
+						  $scope.$watch('model', update_uimodel);
+					  }).fail(function(err) { $scope.error = err; });
+				  }				  
 			  });
 		  }
 	  };
-  });
+});

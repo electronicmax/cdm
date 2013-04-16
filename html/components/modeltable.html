@@ -3,8 +3,13 @@
 	<tr>
 	  <th colspan="2">{{ model.name || model.id }}</th>
 	</tr>
-	<tr ng-repeat="(key,valobj) in uimodel" ui-animate>
-	  <td ng-bind-html-unsafe="key"></td> <td><input type="text" ng-model="valobj.value" ui-event="{keyup: 'commit_model()'}"></td>
+	<tr ng-repeat="kvobj in uimodel" ui-animate>
+	  <td>
+		<input type="text" ng-model="kvobj.key" ui-event="{keyup: 'commit_model()'}">
+	  </td>
+	  <td>
+		<input type="text" ng-model="kvobj.value" ui-event="{keyup: 'commit_model()'}">
+	  </td>
 	</tr>
 	<tr class="newpropertyrow" ng-click="new_row()">
 	  <td colspan=2 class="newproperty"><i class="icon-add"></i></td>
