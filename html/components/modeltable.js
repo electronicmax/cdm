@@ -63,6 +63,7 @@ app.directive('modeltable', function() {
 					  }
 					  return d.promise();
 				  };
+				  var _select2_val_out = function(v) { return v.text.trim(); };
 				  var parseview = function(viewobj, model) {
 					  // we need to take the textual representations out again
 					  var pdfd = u.deferred();
@@ -73,11 +74,13 @@ app.directive('modeltable', function() {
 							  model.unset(x.old_key);
 							  x.old_key = x.key; // update for next time!
 						  });					  
-					  // now parse out the values
+					  // now parse out the val
 					  u.when(viewobj.map(function(propertyval) {
 						  var v = propertyval.value, k = propertyval.key;
+						  console.log("VALUE >> ", v);
 						  var d = u.deferred();
-						  u.when(v.split(parsechar).map(parse)).then(function() {
+						  // u.when(v.split(parsechar).map(parse)).then(function() {
+						  u.when(v.map(_select2_val_out).map(parse)).then(function() {
 							  model.set(k, _.toArray(arguments));
 							  d.resolve();
 						  }).fail(d.reject);
@@ -132,6 +135,7 @@ app.directive('modeltable', function() {
 					  box = webbox.store.get_or_create_box(boxname);
 					  box.fetch().then(function() {
 						  $scope.loaded = true;
+						  $scope.box_objs = box.get_obj_ids();
 						  update_uimodel();
 						  $scope.$watch('model', update_uimodel);
 					  }).fail(function(err) { $scope.error = err; });
