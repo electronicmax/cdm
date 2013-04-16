@@ -12,6 +12,8 @@ app.directive('modeltable', function() {
 				  var parsechar = $attrs.parsechar || ',';
 				  var boxname = $attrs.box, box;
 				  var resolve_fields = ['name', 'label', 'first_name'];
+
+				  
 				  var modeltoview = function(m) {
 					  // makes a ui model
 					  if (m === undefined) { return {}; }				  
@@ -74,6 +76,12 @@ app.directive('modeltable', function() {
 						  return d.promise();
 					  })).then(function() { pdfd.resolve(obj); }).fail(pdfd.reject);
 					  return pdfd.promise();
+				  };
+				  $scope.new_row = function() {
+					  console.log('new _ row ');
+					  var idx = _($scope.uimodel).keys().length + 1;
+					  var new_key = 'property '+idx;
+					  $scope.uimodel[new_key] = { value: '' };
 				  };
 				  $scope.commit_model = function() {
 					  if ($scope.model !== undefined) {
