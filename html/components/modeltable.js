@@ -91,17 +91,32 @@ app.directive('modeltable', function() {
 					  var new_key = 'property '+idx;
 					  $scope.uimodel.push({ key: new_key, old_key: new_key, value:'', old_val: ''});
 				  };
+				  
+				  $scope.checkPropertyClass = function(propertyval) {
+					  var result = propertyval.key.length > 0 ? 'valid' : 'invalid';
+					  console.log('checkpropertyclass ', propertyval, result);
+					  return result;
+				  };				  
+				  var find_invalid_uimodel_properties = function(uimodel) {
+					  return uimodel.filter(function(pv) { return $scope.checkPropertyClass(pv) === 'invalid'; });
+				  };
 				  $scope.commit_model = function() {
 					  var d = u.deferred();
 					  if ($scope.model !== undefined) {
-						  parseview($scope.uimodel, $scope.model).then(function(vals) {
-							  console.log('saving model >> ', $scope.model.attributes);
-							  $scope.model.save();
-						  }).fail(function(err) {
-							  u.error('error committing model ', err);
-							  d.reject(err);
-						  });
+						  if (find_invalid_uimodel_properties($scope.uimodel).length == 0) {
+							  parseview($scope.uimodel, $scope.model).then(function(vals) {
+								  console.log('saving model >> ', $scope.model.attributes);
+								  $scope.model.save();
+							  }).fail(function(err) {
+								  u.error('error committing model ', err);
+								  d.reject(err);
+							  });
+						  } else {
+							  console.error('invalid properties ', find_invalid_uimodel_properties($scope.uimodel));
+							  d.reject();
+						  }
 					  }
+					  return d.promise();
 				  };
 				  $scope.delete_property = function(propertyval) {
 					  var model = $scope.model;
@@ -111,6 +126,7 @@ app.directive('modeltable', function() {
 					  $scope.uimodel = _($scope.uimodel).without(propertyval);
 					  $scope.commit_model();
 				  };
+
 				  // initialise
 				  if (boxname) {
 					  box = webbox.store.get_or_create_box(boxname);
