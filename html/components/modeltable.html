@@ -3,9 +3,8 @@
 	<tr>
 	  <th colspan="2">{{ model.name || model.id }}</th>
 	</tr>
-	<tr ng-repeat="(key,v) in model.attributes">
-	  <td ng-bind-html-unsafe="key">hello.</td>
-	  <td><input type="text" ng-model="v"></td>
+	<tr ng-repeat="(key,valobj) in uimodel">
+	  <td ng-bind-html-unsafe="key"></td> <td><input type="text" ng-model="valobj.value" ui-event="{keyup: 'commit_model()'}"></td>
 	</tr>
   </table>
 </div>

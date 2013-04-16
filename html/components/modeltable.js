@@ -9,35 +9,36 @@ app.directive('modeltable', function() {
 		  controller:function($scope, $attrs, webbox) {
 			  webbox.loaded.then(function() {
 				  var u = webbox.u; // backbone model
-				  var split = $attrs.parsechar || ',';
+				  var parsechar = $attrs.parsechar || ',';
 				  var boxname = $attrs.box, box;
 				  var resolve_fields = ['name', 'label', 'first_name'];
-
-				  if (boxname) {
-					  box = webbox.store.get_box(boxname);
-					  box.fetch().then(function() {
-						  $scope.loaded = true;
-						  update_ui_model();
-					  }).fail(function(err) {
-						  $scope.error = err;
-					  });
-				  }
-				  
-				  console.log("U is ", u, ' - boxname : ', boxname);
-				  
-				  var _serialise = function(v) {
-					  if (v instanceof WebBox.Obj || v instanceof WebBox.File) {
-						  return v.name || v.id;
-					  }
-					  return v.toString();
-				  };
 				  var modeltoview = function(m) {
 					  // makes a ui model
 					  if (m === undefined) { return {}; }				  
-					  return u.dict(_(m).map(function(vs,k) {
-						  return [k, vs.map(serialise).filter(u.defined).join(parsechar)];
-					  }));
+					  return u.dict(_(m.attributes).map(function(vs,k) {
+						  if (['@id'].indexOf(k) >= 0) { return; }
+						  return [k, { value: vs.map(_serialise).filter(u.defined).join(parsechar) } ];
+					  }).filter(u.defined));
+				  };				  
+				  var update_uimodel = function() {
+					  webbox.safe_apply($scope,	function() {
+						  $scope.uimodel = modeltoview($scope.model);
+					  });
 				  };
+				  if (boxname) {
+					  box = webbox.store.get_or_create_box(boxname);
+					  box.fetch().then(function() {
+						  $scope.loaded = true;
+						  update_uimodel();
+						  $scope.$watch('model', update_uimodel);
+					  }).fail(function(err) { $scope.error = err; });
+				  }				  
+				  // model -> view
+				  var _serialise = function(v) {
+					  if (v instanceof WebBox.Obj || v instanceof WebBox.File) {  return v.name || v.id;	  }
+					  return v.toString();
+				  };
+				  // view -> model
 				  var parse = function(v) {
 					  // this tries to figure out what the user meant, including resolving
 					  // references to entities
@@ -46,6 +47,7 @@ app.directive('modeltable', function() {
 					  if (!_.isNaN( parseInt(v, 10) )) { d.resolve(parseInt(v, 10)); }
 					  if (box) {
 						  if ( box.get_obj_ids().indexOf(v) >= 0 ) {
+							  console.log('getting object ', v);
 							  box.get_obj(v).then(d.resolve).fail(d.reject);
 						  } else {
 							  // todo: get by names too
@@ -65,25 +67,23 @@ app.directive('modeltable', function() {
 					  var obj = {}, pdfd = u.deferred();
 					  u.when(_(viewobj).map(function(v,k) {
 						  var d = u.deferred();
-						  u.when(v.split(parsechar).map(parse)).then(function() {
+						  u.when(v.value.split(parsechar).map(parse)).then(function() {
 							  obj[k] = _.toArray(arguments);
 							  d.resolve();
 						  });
 						  return d.promise();
-					  })).then(function() {  pdfd.resolve(obj); }).fail(pdfd.reject);
+					  })).then(function() { pdfd.resolve(obj); }).fail(pdfd.reject);
 					  return pdfd.promise();
 				  };
-				  var update_ui_model = function() {  $scope.ui_model = modeltoview($scope.model);	 };				  
-				  $scope.$watch('model', update_ui_model);
 				  $scope.commit_model = function() {
 					  if ($scope.model !== undefined) {
-						  parseview($scope.ui_model).then(function(vals) {
-							  u.debug('yay --------------- ', vals);
+						  parseview($scope.uimodel).then(function(vals) {
 							  $scope.model.set(vals);
 							  $scope.model.save();
 						  });
 					  }
 				  };
+				  // $scope.$watch('uimodel', commit_model, true);
 			  });
 		  }
 	  };

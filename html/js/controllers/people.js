@@ -9,8 +9,7 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 	var loading_d = new $.Deferred();
 	var error = function(s) { console.error(s); };
 
-	$scope.people = [];
-	
+	$scope.people = [];	
 	$scope.new_person_input_fields = [
 		{ id: 'firstname', label: "given name", placeholder: "given name" , required : 'required'},
 		{ id: 'middlename', label: "middle name", placeholder: "middle name"  },		
@@ -30,7 +29,6 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 		{ id: 'gf', name: 'General Fitness' },
 		{ id: 'icd', name: 'Implantable Cardiac Device (ICD)' }		
 	];
-	
 	$scope.new_person_default_portraits = {
 		Male: {
 			adult:'imgs/people/male-adult.png',
@@ -91,9 +89,7 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 				$scope.clear_portrait_form();
 			});
 			safe_apply($scope, function() { $scope.people.push(obj); });
-		}).fail(function(err) {
-			error(err);
-		});
+		}).fail(function(err) {	error(err);	});
 	};
 	var load_people_from_box = function(box) {
 		// todo replace with query::
@@ -103,13 +99,15 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 				var objs = _.toArray(arguments).filter(function(x) {
 					return x.get('type') && x.get('type').indexOf('person') >= 0;
 				});
-				safe_apply($scope, function() {	$scope.people = objs; });
+				safe_apply($scope, function() {
+					console.log("SETTING PEOPLE TO BE ", objs.length, objs);
+					$scope.people = objs;
+				});
 			}).fail(function(err) {  error('error ', err);	});
 	};	
 	_webbox_controller_login(webbox).then(function(user) {
 		// logged in!
 		var u = $scope.u = webbox.u;
-
 		safe_apply($scope,function() {
 			$scope.username = user;
 			$scope.loading = 0;
@@ -119,9 +117,9 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 		var box = webbox.store.get_or_create_box('cdm');
 		load_people_from_box(box);
 		box.on('obj-add', function() {
-			console.log("OBJECT ADD --");
-			load_people_from_box(box);
-		});
+		 	console.log("OBJECT ADD --");
+		 	load_people_from_box(box);
+		 });
 		// fetch box
 		box.fetch().then(function() {
 			cdm_box = box; load_people_from_box(box); 
@@ -132,7 +130,6 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 				});
 			});
 		});
-
 		
 	}).fail(function() {
 		webbox.u.log('not logged in redirecting ');
