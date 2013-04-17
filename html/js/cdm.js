@@ -24,10 +24,10 @@ var app = angular
 				return fn();
 			}
 			$scope.$apply(fn);
-		};
-		
+		};		
 		WebBox.load().then(function() {
 			exports.u = window.u = WebBox.utils;
+			exports.WebBox = WebBox; // for logging in etc
 			exports.store = window.store = new WebBox.Store();
 			window.store.fetch().then(function() {
 				d.resolve(exports);
