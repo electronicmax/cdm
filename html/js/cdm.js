@@ -4,7 +4,7 @@
 // base cdm app -- including base routes
 
 var app = angular
-	.module('cdm', ['ui'])
+	.module('cdm', ['ui', 'webbox-widgets'])
 	.config(function($routeProvider) {
 		$routeProvider
 			.when('/people', { templateUrl: 'partials/people.html', controller:'PeopleController'})
