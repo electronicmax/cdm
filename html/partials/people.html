@@ -40,6 +40,7 @@
 		  </div>		  
 		</div>
 		<div class="span3 person_profile">
+		  <!-- portrait form -->
 		  <form class="portrait-form" enctype="multpart/form-data">
 			<div class="fileupload fileupload-new" data-provides="fileupload">
 			  <div class="fileupload-new thumbnail portrait">
@@ -58,6 +59,7 @@
 			  </div>
 			</div>
 		  </form>
+		  <!-- portrait form --> 
 		  <div class="text">
 			<h4> {{ new_person_model.firstname || '&nbsp'; }} {{ new_person_model.middlename }} {{ new_person_model.lastname }} </h2>
 			<p><label>age: </label>{{ compute_age(new_person_model.birthday) }} </p>
