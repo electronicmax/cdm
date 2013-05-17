@@ -1,8 +1,7 @@
-<div>
-  party dawg.
+<div id="carousel">
   <ul>
-	<li ng-repeat="photo in user.get('portrait')">
-	  <img ng-src="{{ photo.get_url() }}">
-	</li>
+      <li ng-repeat="photo in user.get('portrait')" style="width: 100%; height: 100%;">
+        <div style="width: 100%; height: 100%; background-image: url({{ photo.get_url() }}); background-size: cover; margin: 0px;"></div>
+	  </li>
   </ul>
 </div>

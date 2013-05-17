@@ -1,0 +1,30 @@
+{
+    "@id": "MrTest",
+
+                                 "birthday": [ { "@language": "",
+                                                  "@type": "",
+                                                  "@value": "1982-01-01"}],
+                                 "firstname": [ { "@language": "",
+                                                   "@type": "",
+                                                   "@value": "TestMan"}],
+                                 "gender": [ { "@language": "",
+                                                "@type": "",
+                                                "@value": "Male"}],
+                                 "lastname": [ { "@language": "",
+                                                  "@type": "",
+                                                  "@value": "Test"}],
+                                 "portrait": [ { "@language": "image/jpeg",
+                                                  "@type": "webbox-file",
+                                                  "@value": "portrait-Daniel__Smith"},
+                                  { "@language": "image/jpeg",
+                                                  "@type": "webbox-file",
+                                                  "@value": "portrait-Daniel__Smith"},
+                                  { "@language": "image/jpeg",
+                                                  "@type": "webbox-file",
+                                                  "@value": "portrait-Daniel__Smith"}],
+                                 "type": [ { "@language": "",
+                                              "@type": "",
+                                              "@value": "person"}]
+
+
+}
