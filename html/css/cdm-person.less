@@ -1,6 +1,7 @@
 .person {
 	margin:-20px 0px 0px 0px; padding:0px !important;
 	.body {
+		border:1px solid pink;
 		position:relative;
 		margin: 0px !important;
 		max-width:100%;
@@ -23,7 +24,7 @@
 		}
 		h4 {
 			padding:0px; margin:0px 0px 10px 0px;
-			}
+		}
 	}
 	.person-photo-container{
 	   max-width:1000px;
@@ -31,8 +32,8 @@
 	   overflow-y:hidden;
 	   .person-photos {
 		   border:0.5px solid #eee;
-		   padding:3px;
-		   height:180px;
+		   padding:3px 0px 0px 28px;
+		   height:220px;
 		   min-width:2000px;
 		   input {  font-size:0pt;   }
 		   .photo-frame {
@@ -43,7 +44,8 @@
 			   -moz-transition: all 0.5s ease;
 			   -webkit-transition: all 0.5s ease;
 			   img {
-				   height:100px;
+				   height:120px;
+				   box-shadow: 0px 4px 15px #999;			  
 			   }
 			   .delete {
 				   position:absolute;
@@ -53,7 +55,6 @@
 			   &:hover .delete { display:block; }
 			   &:hover {
 				   -webkit-transform: scale(1.7,1.7);
-				   // height:170px;
 				   z-index:100;
 			   }
 			   margin:40px 2px 40px 2px;

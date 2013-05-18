@@ -5,19 +5,19 @@ function PersonController($scope, $location, webbox, $routeParams){
 		console.log('go event ', path);
 		safe_apply($scope, function() {	$location.path(path); });
 	};
-	$scope.commit_measurement = function(measurement) {
-		console.log('need to commit measurement ', measurement);
-	};
 	$scope.delete_from = function(obj, property, value) {
-		console.log("DELETE FROM ", property, value);
 		var vs = obj.get(property);
-		console.log('before splice ', vs.length);
 		if (vs.indexOf(value) >= 0) {
 			vs.splice(vs.indexOf(value), 1);
 		}
 		console.log('apres splice ', vs.length);		
 		obj.set(property, vs); // _(obj.get(property)).without(value)
 		obj.save();
+	};
+
+	// under construction -------------
+	$scope.commit_measurement = function(measurement) {
+		console.log('need to commit measurement ', measurement);
 	};
 	var make_measurements = function(scope) {
 		safe_apply(scope,function() {
@@ -28,6 +28,8 @@ function PersonController($scope, $location, webbox, $routeParams){
 			];
 		});
 	};
+	// --------------------------------------
+
 	var startup = function() {
 		window.user = $scope.user;
 		make_measurements($scope);

@@ -1,0 +1,16 @@
+
+1. weird behaviour as follows:
+   after server has been running awhile, websocket updates do not have anything in them (added:{},changed:{},deleted:{})
+AND on refresh end up with duplicate values in the array
+
+2. hammertime broke somewhere
+
+3. need the ability to address photo view so that if you click on a photo it can start on that one
+
+   user/photos -> starts at the 1st photo
+   user/photos/photoid -> starts at the photoidth photo
+
+
+
+ 
+   
