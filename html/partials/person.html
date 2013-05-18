@@ -24,11 +24,17 @@
 	  <form>
 		<input type="file" accept="image/*;capture=camera" text="hello"></input>
 	  </form>
-	</div>	
-	<h4> modules </h4>
-	<ul>
-	  <li ng-repeat="module in user.get('modules')"> <a href="{{ module.id }}/">{{ module.id }}</a> </li>
-	</ul>
+	</div>
+
+	<table>
+	  <tr ng-repeat="measurement in measures">
+		<td ng-bind-html-unsafe="measurement.name"></td>
+		<td>
+		  <div ng-show="measurement.value"><i class="icon-okay"></i></div>
+		  <input type="text" ng-model='measurement.value' ui-event="{ blur: 'commit_measurement(measurement)' }">
+		</td>
+	  </tr>
+	</table>
   </div>
 </div>
 

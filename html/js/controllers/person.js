@@ -5,6 +5,9 @@ function PersonController($scope, $location, webbox, $routeParams){
 		console.log('go event ', path);
 		safe_apply($scope, function() {	$location.path(path); });
 	};
+	$scope.commit_measurement = function(measurement) {
+		console.log('need to commit measurement ', measurement);
+	};
 	$scope.delete_from = function(obj, property, value) {
 		console.log("DELETE FROM ", property, value);
 		var vs = obj.get(property);
@@ -16,8 +19,18 @@ function PersonController($scope, $location, webbox, $routeParams){
 		obj.set(property, vs); // _(obj.get(property)).without(value)
 		obj.save();
 	};
+	var make_measurements = function(scope) {
+		safe_apply(scope,function() {
+			scope.measures = [
+				{name:'weight'},
+				{name:'temperature'},
+				{name:'height'}
+			];
+		});
+	};
 	var startup = function() {
 		window.user = $scope.user;
+		make_measurements($scope);
 		var update_prev = function(file, img) {
 			if (typeof FileReader !== "undefined" && (/image/i).test(file.type)) {
 				var reader = new FileReader();
