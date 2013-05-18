@@ -35,6 +35,16 @@
 	   input {
 		   font-size:0pt;
 	   }
+	   .photo-frame {
+		   display:inline-block;
+		   position:relative;
+		   .delete {
+			   position:absolute;
+			   top:5px; right:5px;
+			   display:block;
+		   }
+		   &:hover .delete { display:auto; }
+	   }
     }              
 	.edit {	font-size:10pt;	}
 	background:white;

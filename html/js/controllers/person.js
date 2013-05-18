@@ -5,6 +5,11 @@ function PersonController($scope, $location, webbox, $routeParams){
 		console.log('go event ', path);
 		safe_apply($scope, function() {	$location.path(path); });
 	};
+	$scope.delete_from = function(obj, property, value) {
+		console.log("DELETE FROM ", property, value);
+		obj.set(property, _(obj.get(property)).without(value));
+		obj.save();
+	};
 	var startup = function() {
 		window.user = $scope.user;
 		var update_prev = function(file, img) {

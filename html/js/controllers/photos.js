@@ -3,6 +3,9 @@ function PhotosController($scope, $location, webbox, $routeParams){
 
 	var create_carousel = function() {
 
+		// debug 
+		window.user = $scope.user;
+
         /**
          * requestAnimationFrame and cancel polyfill
          */

@@ -12,8 +12,9 @@
   </div>
   <div class='body'>
 	<div class="person-photos">
-	  <div>
-		<img ng-src="{{ pic.get_url() }}" class='preview' ng-repeat="pic in user.get('portrait')">
+	  <div class="photo-frame" ng-repeat="pic in user.get('portrait')">
+		<img ng-src="{{ pic.get_url() }}" class='preview'>
+		<div class="delete" ng-click="delete_from(user,'portrait',pic)"><i class="icon-remove"></i></div>
 	  </div>
 	  <div>
 		<!-- <img src="imgs/blank.jpeg" class="preview"> -->
