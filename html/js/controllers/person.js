@@ -37,7 +37,8 @@ function PersonController($scope, $location, webbox, $routeParams){
 			var form = $(this).parent('form');
 			console.log('changed --- ', $(this));
 			if (this.files[0] && this.files[0].type) {
-				update_prev(this.files[0], $(this).parent().find('.preview')[0]);
+				// preview 
+				// update_prev(this.files[0], $(this).parent().find('.preview')[0]);
 				put_image(this.files[0]).then(function() {
 					if (form && form[0]) { form[0].reset(); }
 				});
