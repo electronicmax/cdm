@@ -1,5 +1,6 @@
 
 function LoginController($scope, $location, webbox) {
+	console.log('logincontroller?');
 	var store;
 	safe_apply($scope, function() { $scope.loading = 1; });	
 	$scope.login = function(username,password) {
@@ -18,6 +19,7 @@ function LoginController($scope, $location, webbox) {
 		}
 		throw new RuntimeError('webbox not initialising properly');
 	};
+	console.log('webbox loaded?');	
 	webbox.loaded.then(function(webbox) {
 		console.log('webbox loaded then ');
 		var u = $scope.u = webbox.u;

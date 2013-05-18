@@ -17,7 +17,7 @@ var app = angular
 			.when('/login', { templateUrl: 'partials/login.html', controller:'LoginController'})
 			.otherwise({redirectTo:'/people'});
 	})
-	.factory('webbox',function() {
+	.factory('webbox',function($location) {
 		var exports = {};
 		var d = exports.loaded = new $.Deferred();
 		exports.safe_apply = function($scope, fn) {
@@ -34,7 +34,9 @@ var app = angular
 				d.resolve(exports);
 			}).fail(function() {
 				// TODO
-				u.error('Error fetching boxes');
+				u.error('Error fetching boxes. boo');
+				d.resolve(exports);				
+				document.location = document.location.pathname+"#/login"				
 			});
 		});
 		return exports;
