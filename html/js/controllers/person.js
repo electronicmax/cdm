@@ -47,8 +47,14 @@ function PersonController($scope, $location, webbox, $routeParams){
 					if (form && form[0]) { form[0].reset(); }
 				});
 			}
-		});			
+		});
+
+		$scope.user.on('change:portrait', function() {
+			safe_apply($scope, function() { console.log("no op!"); });					
+		});
+
 	};
+	
 	_webbox_controller_login(webbox).then(function(user) {
 		// logged in!
 		var u = $scope.u = webbox.u;
