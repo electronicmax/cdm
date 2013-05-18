@@ -11,6 +11,11 @@
         }
 
 
+        /* Remove grey bar above photos */
+        #carousel > ul li {
+            display: block; /* override display: list-item */
+        }
+
 
         #carousel {
             background: silver;
