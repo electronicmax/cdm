@@ -16,12 +16,16 @@
 		<img ng-src="{{ pic.get_url() }}" class='preview' ng-repeat="pic in user.get('portraits')">
 	  </div>
 	  <div>
-		<!--<img src="imgs/blank.jpeg" class="preview">-->
-		<i class="icon-camera"></i><form><input type="file" accept="image/*;capture=camera"></form>
+		<!-- <img src="imgs/blank.jpeg" class="preview"> -->
+		<form>
+		  <input type="file" accept="image/*;capture=camera" text="hello"><i class="icon-camera"></input>
+		</form>
 	  </div>
+	  <!-- video todo 
 	  <div>
 		<i class="icon-camera"></i><input type="file" accept="image/*;capture=camera">
-	  </div>	
+	  </div>
+	  -->
 	<h4> modules </h4>
 	<ul>
 	  <li ng-repeat="module in user.get('modules')"> <a href="{{ module.id }}/">{{ module.id }}</a> </li>
