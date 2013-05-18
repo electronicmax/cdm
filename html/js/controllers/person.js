@@ -23,11 +23,10 @@ function PersonController($scope, $location, webbox, $routeParams){
 			window.ff = file;
 			var id = file.name;
 			box.put_file(id, file).then(function(model) {
-				console.log('doe putting ', id);
-				var portraits = $scope.user.get('portraits') || [];
+				var portraits = $scope.user.get('portrait') || [];
 				portraits.push(model);
 				safe_apply($scope, function() {
-					$scope.user.set('portraits', portraits);
+					$scope.user.set('portrait', portraits);
 					$scope.user.save().then(d.resolve).fail(d.reject);					
 				});				
 			});
