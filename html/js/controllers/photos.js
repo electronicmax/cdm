@@ -166,10 +166,15 @@ function PhotosController($scope, $location, webbox, $routeParams){
         }
 
 
-        $scope.$watch('user.attributes.portrait', function(){
-			console.log("I GOT A CHANGE ON USER -- ");
-            var carousel = new Carousel("#carousel");
-            carousel.init();
+
+		// this doesn't seem to be reliable
+        // $scope.$watch('user.attributes.portrait', function(){
+		$scope.user.on('change:portrait', function() {
+			safe_apply($scope, function() {
+				console.log("I GOT A CHANGE ON USER -- ");
+				var carousel = new Carousel("#carousel");
+				carousel.init();
+			});
         });
 
 	};
