@@ -7,7 +7,13 @@ function PersonController($scope, $location, webbox, $routeParams){
 	};
 	$scope.delete_from = function(obj, property, value) {
 		console.log("DELETE FROM ", property, value);
-		obj.set(property, _(obj.get(property)).without(value));
+		var vs = obj.get(property);
+		console.log('before splice ', vs.length);
+		if (vs.indexOf(value) >= 0) {
+			vs.splice(vs.indexOf(value), 1);
+		}
+		console.log('apres splice ', vs.length);		
+		obj.set(property, vs); // _(obj.get(property)).without(value)
 		obj.save();
 	};
 	var startup = function() {
