@@ -48,7 +48,7 @@
 		<i class="icon-plus-sign add_reading" ng-click="commit_measurement(user,measurement)"></i>		  
 	  </form>
 
-	  <div ui-if="get_user_measurements(user, measurement.property).length < 2">
+	  <div ui-if="get_user_measurements(user, measurement.property).length < 2" style="text-align:center; margin-top:12px;">
 		<i>not enough data - please add a measurement to start plotting!</i>
 	  </div>
 	  <div ui-if="get_user_measurements(user, measurement.property).length >= 2">
