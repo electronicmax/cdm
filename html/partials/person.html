@@ -29,8 +29,9 @@
 
 	<div class="measurement" ng-repeat="measurement in measures">
 	  <div ng-bind-html-unsafe="measurement.name"></div>
-	  <div ng-show="measurement.value"><i class="icon-okay"></i>
+	  <div><i ng-show="measurement.value" class="icon-okay"></i>
 		<input type="text" ng-model='measurement.value' ui-event="{ blur: 'commit_measurement(measurement)' }">
+		<timeseries model="user" box="box" properties="lastname, firstname"></timeseries>
 	  </div>
 	</div>
   </div>
