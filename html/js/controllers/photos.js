@@ -39,10 +39,11 @@ function PhotosController($scope, $location, webbox, $routeParams){
         * super simple carousel
         * animation between panes happens with css transitions
         */
-        function Carousel(element)
+        function Carousel(element, main_container)
         {
             var self = this;
             element = $(element);
+            main_container = $(main_container);
 
             var container = $(">ul", element);
             var panes = $(">ul>li", element);
@@ -52,6 +53,7 @@ function PhotosController($scope, $location, webbox, $routeParams){
             console.debug("pane_count", pane_count);
 
             var current_pane = 0;
+
 
 
             /**
@@ -169,13 +171,30 @@ function PhotosController($scope, $location, webbox, $routeParams){
 
             element.hammer({ drag_lock_to_axis: true })
                 .on("release dragleft dragright swipeleft swiperight", handleHammer);
+
+
+            
+            var next_button = main_container.children(".carousel-right");
+            var prev_button = main_container.children(".carousel-left");
+  
+            console.debug("next_button", next_button); 
+            console.debug("prev_button", prev_button); 
+            next_button.click(function(evt){
+                console.debug("next click");
+                self.next();
+            });
+            prev_button.click(function(evt){
+                console.debug("prev click");
+                self.prev();
+            });
+
         }
 
 
         function update_carousel($scope, jump_to_last){
 			safe_apply($scope, function() {
 				console.log("I GOT A CHANGE ON USER -- ");
-				var carousel = new Carousel("#carousel");
+				var carousel = new Carousel("#carousel", "#main-carousel");
 				carousel.init();
                 if (jump_to_last){
                     carousel.showLast();
