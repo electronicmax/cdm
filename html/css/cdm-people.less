@@ -6,7 +6,7 @@
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   border: 1px solid rgba(200,200,200,0.1);
-  background:rgba(240,240,240,0.2);
+  background:rgba(255,255,255,0);
   border-radius:6px;
   opacity:1.0;
   &.ui-animate {
@@ -27,18 +27,46 @@
 	  box-shadow: inset 0px 10px 10px #eee;
 	  z-index:10;	  
   }
-  .person_list {
-	  margin:0px !important;
-	  .body { margin: 0px;  z-index:-1;  }	  
-	  ul {
-		  list-style-type:none;
-		  margin:0px !important;
-		  padding:0px !important;
-	  }
+  ul.person_list {
+	  margin: 0px auto auto auto;
+	  max-width:800px;
+	  list-style-type:none;
+	  padding:0px !important;
 	  .person_record {
-		  width:100%;
-		  min-height:100px;
-		  padding:5px 40px 5px 40px;
+		  position:relative;
+         padding:10px;
+		  display:inline-block;
+		  width:200px;
+		  height:270px;
+		  margin:10px;
+		  border: 0.5px solid #eee;		  
+		  background:rgba(255,255,255,0.9);
+		  &:hover {
+			  box-shadow: 0px 4px 15px #999;			  
+		  }
+		  -o-transition: all 0.22s ease;
+		  -moz-transition: all 0.22s ease;
+		  -webkit-transition: all 0.22s ease;
+		  .photo-clipper {
+			  overflow:hidden;
+			  position:absolute;
+			  top:10px;
+			  left:50%;
+			  margin:0px 0px 0px -90px;
+			  height:220px;
+			  width:180px;
+			  img {
+				  min-height:220px;
+				  width:auto;
+				  margin-left:0;
+			  }
+		  }
+		  .name {
+			  padding:0px !important;
+			  position:absolute;
+			  top:235px;
+			  margin:0px !important;
+		  }
 	  }
   }  
 

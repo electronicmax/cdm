@@ -73,15 +73,18 @@
 	  </div>
 	</div>
   </div><!-- new user accordion -->
-  <!-- existing users --> 
-  <div class="person_list">
-	<ul>
-	  <li ng-repeat="person in people">
-		<div class="person_record" data-id="{{ person.id }}">
-		  <img class="photo" ui-if="person.get('photo')[0]">
-		  <a href="#/people/{{ person.id }}"><h1 ng-bind-html-unsafe="person.get('firstname')[0]"></h1></a>
+  <!-- existing users -->
+  <p>
+  <ul class="person_list">
+	<li class="person_record" ng-repeat="person in people">
+	  <a href="#/people/{{ person.id }}">	  
+		<div class="photo-clipper">
+		  <img class="photo" ui-if="person.get('portrait')[0]"
+			   ng-src="{{ person.get('portrait')[0].get_url() }}">
 		</div>
-	</ul>
-  </div>
+		<h4 class='name' ng-bind-html-unsafe="person.get('firstname')[0]"></h4>
+	  </a>
+	</li>
+  </ul>
 </div>
 
