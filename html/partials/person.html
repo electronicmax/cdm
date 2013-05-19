@@ -31,6 +31,7 @@
 	<div class="measurement" ng-repeat="measurement in measures">
 	  <div ng-bind-html-unsafe="measurement.name"></div>
 	  <div>
+		<!--
 		<div class='values'>
 		  <table>
 			<tr ng-repeat="m in get_user_measurements(user, measurement.property)">
@@ -39,6 +40,7 @@
 			</tr>
 		  </table>
 		</div>
+		-->
 		<form ng-submit='commit_measurement(user,measurement)'>
 		  <input type="text" measurement='{{measurement.name}}' ng-model='measurement.value' >
 		  <i class="icon-plus-sign add_reading" ng-click="commit_measurement(user,measurement)"></i>		  
