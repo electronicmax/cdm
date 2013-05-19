@@ -35,8 +35,10 @@ function PersonController($scope, $location, webbox, $routeParams){
 		console.log('NEW READING ', vals.length);
 		setTimeout(function() {
 			user.set(measurement.property, JSON.stringify(vals));
-			user.save();			
+			user.save();
+			$('input[measurement="'+measurement.name+'"]').val('');
 		}, 0);
+		
 	};
 	
 	var make_measurements = function(scope) {
