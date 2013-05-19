@@ -90,8 +90,8 @@ function PersonController($scope, $location, webbox, $routeParams){
 			box.get_obj($routeParams.personId).then(function(fetched_user) {
 				safe_apply($scope, function() {
 					u.log('fetched user ', fetched_user.id);
+					$scope.box = box;
 					user = $scope.user = fetched_user;
-					console.log('setting $scope.user ', $scope.user);
 					startup();
 				});
 			});
