@@ -26,7 +26,7 @@
         }
 
         #carousel {
-            background: silver;
+            background: rgba(128,128,128,0.5);
             overflow: hidden;
             width: 1024px;
             height: 768px;
