@@ -9,10 +9,10 @@
 
 	  <div class="person-photo-container">
 		<div class="person-photos">
-		  <div class="photo-frame" ng-repeat="i in range(user.get('portrait').length)">
-			<a href="#/people/{{ user.id }}/photos/{{ i }}"><img ng-src="{{ user.get('portrait')[i].get_url() }}"></a>
-			<div class="delete" ng-click="delete_from(user,'portrait',user.get('portrait')[i])"><i class="icon-remove"></i></div>
-		  </div>
+			<div class="photo-frame" ng-repeat="i in range(user.get('portrait').length)">
+			  <a href="#/people/{{ user.id }}/photos/{{ i }}"><img ng-src="{{ user.get('portrait')[i].get_url() }}"></a>
+			  <div class="delete" ng-click="delete_from(user,'portrait',user.get('portrait')[i])"><i class="icon-remove"></i></div>
+			</div>
 		</div>
 	  </div><!-- person photo container -->
 	  <form>
