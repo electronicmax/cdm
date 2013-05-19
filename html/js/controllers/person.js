@@ -1,6 +1,13 @@
 
 function PersonController($scope, $location, webbox, $routeParams){
 	var box;
+	$scope.range = function(l,h) {
+		var a = [];
+		if (_.isUndefined(h)) { h = l; l = 0; }
+		for (var i = l; i < h; i++) { a.push(i); }
+		return a;
+	};
+
 	$scope.go = function(path) {
 		console.log('go event ', path);
 		safe_apply($scope, function() {	$location.path(path); });
@@ -14,7 +21,6 @@ function PersonController($scope, $location, webbox, $routeParams){
 		obj.set(property, vs); // _(obj.get(property)).without(value)
 		obj.save();
 	};
-
 	// under construction -------------
 	$scope.commit_measurement = function(measurement) {
 		console.log('need to commit measurement ', measurement);
