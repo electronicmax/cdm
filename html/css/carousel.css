@@ -121,13 +121,15 @@
         .circle {
             width: 100px;
             height: 100px;
-            background: silver; 
+            background: rgba(240,240,240,0.2); 
             -moz-border-radius: 50px;
             -webkit-border-radius: 50px;
             border-radius: 50px;
+			
             /* border: 0.5px solid white; */
         }		
         .triangle-left {
+			background-color:rgba(0,0,0,0);
             width: 0;
             height: 0;
             border-top: 25px solid transparent;
@@ -139,6 +141,7 @@
         }
 
         .triangle-right {
+			background-color:rgba(0,0,0,0);			
             width: 0;
             height: 0;
             border-top: 25px solid transparent;
