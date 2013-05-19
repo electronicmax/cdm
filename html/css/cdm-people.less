@@ -27,6 +27,7 @@
 	  box-shadow: inset 0px 10px 10px #eee;
 	  z-index:10;	  
   }
+  @portrait-width: 225px;
   ul.person_list {
 	  margin: 0px auto auto auto;
 	  max-width:800px;
@@ -36,7 +37,7 @@
 		  position:relative;
          padding:10px;
 		  display:inline-block;
-		  width:200px;
+		  width:@portrait-width;
 		  height:270px;
 		  margin:10px;
 		  border: 0.5px solid #eee;		  
@@ -44,29 +45,35 @@
 		  &:hover {
 			  box-shadow: 0px 4px 15px #999;			  
 		  }
-		  -o-transition: all 0.22s ease;
-		  -moz-transition: all 0.22s ease;
-		  -webkit-transition: all 0.22s ease;
 		  .photo-clipper {
 			  overflow:hidden;
 			  position:absolute;
-			  top:10px;
-			  left:50%;
-			  margin:0px 0px 0px -90px;
+			  top:0px;
+			  left:0px;
+			  width:@portrait-width;
 			  height:220px;
-			  width:180px;
-			  img {
-				  min-height:220px;
-				  width:auto;
-				  margin-left:0;
+			  .photo {
+				  width:@portrait-width; height:220px;
+				  background-position: no-repeat center center;
+				  -webkit-background-size: cover !important;
+				  -moz-background-size: cover;
+				  -o-background-size: cover;
+				  background-size: cover;
 			  }
 		  }
 		  .name {
-			  padding:0px !important;
-			  position:absolute;
-			  top:235px;
+			  position:absolute;			  
+			  top:191px;
+			  left:0px;
+			  right:0px; bottom:0px;
+			  padding:3px 10px 4px 10px !important;
 			  margin:0px !important;
+			  color:white;
+			  background:rgba(0,0,0,0.5);
 		  }
+		  -o-transition: all 0.22s ease;
+		  -moz-transition: all 0.22s ease;
+		  -webkit-transition: all 0.22s ease;		  
 	  }
   }  
 

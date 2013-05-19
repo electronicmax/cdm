@@ -79,8 +79,8 @@
 	<li class="person_record" ng-repeat="person in people">
 	  <a href="#/people/{{ person.id }}">	  
 		<div class="photo-clipper">
-		  <img class="photo" ui-if="person.get('portrait')[0]"
-			   ng-src="{{ person.get('portrait')[0].get_url() }}">
+		  <div class="photo" ui-if="person.get('portrait')[0]"
+			   style="background-image: url('{{ person.get('portrait')[0].get_url() }}')">
 		</div>
 		<h4 class='name' ng-bind-html-unsafe="person.get('firstname')[0]"></h4>
 	  </a>
