@@ -23,11 +23,16 @@ function PersonController($scope, $location, webbox, $routeParams){
 	$scope.get_user_measurements = function(user, measurement_property) {
 		var vs = user.get(measurement_property) ? JSON.parse(user.get(measurement_property)[0]) : [];
 		vs.sort(function(x,y) { return x.timestamp - y.timestamp; });
-		return vs;
+		return vs.concat([]);
 	};
 	$scope.formatDate = function(x) {
-		var d = new Date(x);
-		return d.toLocaleTimeString() + " " + d.toLocaleDateString();
+		try {
+			var d = new Date(x);
+			return d.toLocaleTimeString() + " " + d.toLocaleDateString();
+		} catch(e) {
+			console.error('ERROR in formatDate', e);
+			return '';
+		}
 	};
 	$scope.formatValue = function(x) {
 		return x + '';
