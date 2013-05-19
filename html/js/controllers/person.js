@@ -22,9 +22,17 @@ function PersonController($scope, $location, webbox, $routeParams){
 	};
 	$scope.get_user_measurements = function(user, measurement_property) {
 		var vs = user.get(measurement_property) ? JSON.parse(user.get(measurement_property)[0]) : [];
-		vs.sort(function(x,y) { return y.timestamp - x.timestamp; });
+		vs.sort(function(x,y) { return x.timestamp - y.timestamp; });
 		return vs;
 	};
+	$scope.formatDate = function(x) {
+		var d = new Date(x);
+		return d.toLocaleTimeString() + " " + d.toLocaleDateString();
+	};
+	$scope.formatValue = function(x) {
+		return x + '';
+	};
+	
 	// under construction -------------
 	$scope.commit_measurement = function(user,measurement) {
 		console.log('need to commit measurement ', measurement, measurement.value);

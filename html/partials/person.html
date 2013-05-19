@@ -33,7 +33,7 @@
 	  <div>
 		<div class='values'>
 		  <table>
-			<tr ng-repeat="m in get_user_measurements(user, measurement)">
+			<tr ng-repeat="m in get_user_measurements(user, measurement.property)">
 			  <td ng-bind-html-unsafe="formatDate(m.timestamp)"></td>
 			  <td ng-bind-html-unsafe="formatValue(m.value) + measurement.units"></td>
 			</tr>
