@@ -40,12 +40,12 @@ function PersonController($scope, $location, webbox, $routeParams){
 	
 	// under construction -------------
 	$scope.commit_measurement = function(user,measurement) {
-		console.log('need to commit measurement ', measurement, measurement.value);
+		// console.log('need to commit measurement ', measurement, measurement.value);
 		var new_reading = { measurement_type : measurement.name, value: measurement.value, timestamp : new Date().valueOf(), units: measurement.units };
-		console.log(' new reading > ', new_reading);
+		// console.log(' new reading > ', new_reading);
 		var vals = $scope.get_user_measurements(user, measurement.property);
 		vals.push(new_reading);
-		console.log('NEW READING ', vals.length);
+		// console.log('NEW READING ', vals.length);
 		setTimeout(function() {
 			user.set(measurement.property, JSON.stringify(vals));
 			user.save();

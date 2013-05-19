@@ -47,7 +47,14 @@
 		<span ng-bind-html-unsafe="measurement.units"></span>
 		<i class="icon-plus-sign add_reading" ng-click="commit_measurement(user,measurement)"></i>		  
 	  </form>
-	  <timeseries model="user" box="box" property="measurement.property"></timeseries>
+
+	  <div ui-if="get_user_measurements(user, measurement.property).length < 2">
+		<i>not enough data - please add a measurement to start plotting!</i>
+	  </div>
+	  <div ui-if="get_user_measurements(user, measurement.property).length >= 2">
+  		<timeseries model="user" box="box" property="measurement.property"></timeseries>
+	  </div>
+	  
 	  </div>
 	</div>
   </div>
