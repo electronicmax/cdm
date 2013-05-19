@@ -11,7 +11,6 @@
             display: block; /* override display: list-item */
         }
 
-
         #carousel, #carousel ul, #carousel li, .carousel_container {
             min-height: 100%;
             height: 100%;
@@ -21,10 +20,11 @@
         }
 
         .carousel_container {
+            background: rgba(128,128,128,0.5);			
             width: 100%;
             height: 100%;
             position: absolute;
-            top: 0px;
+            top: 40px;
             padding-top: 42px;
         }
 
@@ -38,7 +38,6 @@
         }
 
         #carousel {
-            background: rgba(128,128,128,0.5);
             overflow: hidden;
             -webkit-backface-visibility: hidden;
             -webkit-transform: translate3d(0,0,0) scale3d(1,1,1);
@@ -94,6 +93,22 @@
         #carousel li.pane5 { background: #9fe1e7; }
 
 
+		.closeback {
+			position: absolute;
+			opacity: 0.3;
+			top: 25px;
+			left:25px;
+			font-size:48pt;
+			font-family:"Helvetica";
+			font-weight:500;
+			color:white;
+            cursor: pointer;
+			transition: all 0.4s ease;
+			-o-transition: all 0.4s ease;
+			-moz-transition: all 0.4s ease;
+			-webkit-transition: all 0.4s ease;
+		}
+		.closeback:hover { opacity:0.7; }
         /* next/prev */
 		.carousel-left, .carousel-right {
 			position: absolute;
