@@ -1,18 +1,23 @@
 
         /* shared carousel css */
 
-
         /* Remove grey bar above photos */
         #carousel > ul li {
             display: block; /* override display: list-item */
         }
 
 
-        #carousel, #carousel ul, #carousel li, .carousel-container {
+        #carousel, #carousel ul, #carousel li, .carousel_container {
             min-height: 100%;
             height: 100%;
             padding: 0;
             margin: 0;
+            position: relative;
+        }
+
+        .carousel_container {
+            width: 1024px;
+            height: 768px;
             position: relative;
         }
 
@@ -28,8 +33,6 @@
         #carousel {
             background: rgba(128,128,128,0.5);
             overflow: hidden;
-            width: 1024px;
-            height: 768px;
             -webkit-backface-visibility: hidden;
             -webkit-transform: translate3d(0,0,0) scale3d(1,1,1);
             -webkit-transform-style: preserve-3d;
@@ -87,11 +90,21 @@
         /* next/prev */
         .carousel-left {
             position: absolute;
-            left; 0px;
+            left: 5px;
             top: 50%;
             margin-top: -50px; /* half the height of the circle */
             z-index: 50;
             opacity: 0.7;
+            cursor: pointer;
+        }
+        .carousel-right {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            margin-top: -50px; /* half the height of the circle */
+            z-index: 50;
+            opacity: 0.7;
+            cursor: pointer;
         }
 
         /* shapes for the next/prev */
@@ -102,7 +115,6 @@
             -moz-border-radius: 50px;
             -webkit-border-radius: 50px;
             border-radius: 50px;
-            padding: 25px 0px 0px 20px;
             border: 1px solid white;
         }
 
@@ -112,14 +124,20 @@
             border-top: 25px solid transparent;
             border-right: 50px solid white;
             border-bottom: 25px solid transparent;
+            position: absolute;
+            top: 25px;
+            left: 20px;
         }
 
         .triangle-right {
             width: 0;
             height: 0;
-            border-top: 50px solid transparent;
-            border-left: 100px solid red;
-            border-bottom: 50px solid transparent;
+            border-top: 25px solid transparent;
+            border-left: 50px solid white;
+            border-bottom: 25px solid transparent;
+            position: absolute;
+            top: 25px;
+            right: 20px;
         }
 
 
