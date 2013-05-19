@@ -20,16 +20,26 @@
 	  </form>
 	</div>
   </div>
+  <!--
   <div id="edit-user-accordion" class="accordion-body collapse">
 	<div class="inner container-fluid">
 	  <modeltable box="box" model="user"></modeltable>
 	</div>
   </div>
+  -->
   <div class='body'>
 	<div class="measurement" ng-repeat="measurement in measures">
 	  <div ng-bind-html-unsafe="measurement.name"></div>
-	  <div><i ng-show="measurement.value" class="icon-okay"></i>
-		<input type="text" ng-model='measurement.value' ui-event="{ blur: 'commit_measurement(measurement)' }">
+	  <div>
+		<div class='values'>
+		  <table>
+			<tr ng-repeat="m in get_user_measurements(user, measurement)">
+			  <td ng-bind-html-unsafe="formatDate(m.timestamp)"></td>
+			  <td ng-bind-html-unsafe="formatValue(m.value) + measurement.units"></td>
+			</tr>
+		  </table>
+		</div>
+		<input type="text" ng-model='measurement.value' ui-event="{ blur: 'commit_measurement(user,measurement)' }">
 		<timeseries model="user" box="box" properties="lastname, firstname"></timeseries>
 	  </div>
 	</div>

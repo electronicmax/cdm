@@ -20,19 +20,35 @@ function PersonController($scope, $location, webbox, $routeParams){
 		obj.set(property, vs); // _(obj.get(property)).without(value)
 		obj.save();
 	};
-	// under construction -------------
-	$scope.commit_measurement = function(measurement) {
-		console.log('need to commit measurement ', measurement);
+	$scope.get_user_measurements = function(user, measurement_property) {
+		var vs = user.get(measurement_property) ? JSON.parse(user.get(measurement_property)[0]) : [];
+		vs.sort(function(x,y) { return y.timestamp - x.timestamp; });
+		return vs;
 	};
+	// under construction -------------
+	$scope.commit_measurement = function(user,measurement) {
+		console.log('need to commit measurement ', measurement, measurement.value);
+		var new_reading = { measurement_type : measurement.name, value: measurement.value, timestamp : new Date().valueOf(), units: measurement.units };
+		console.log(' new reading > ', new_reading);
+		var vals = $scope.get_user_measurements(user, measurement.property);
+		vals.push(new_reading);
+		console.log('NEW READING ', vals.length);
+		setTimeout(function() {
+			user.set(measurement.property, JSON.stringify(vals));
+			user.save();			
+		}, 0);
+	};
+	
 	var make_measurements = function(scope) {
 		safe_apply(scope,function() {
 			scope.measures = [
-				{name:'weight'},
-				{name:'temperature'},
-				{name:'height'}
+				{name:'weight', property:'weight', units:'kg'},
+				{name:'temperature', property:'temp', units:'C'},
+				{name:'height', property:'height', units:'cm'}
 			];
 		});
 	};
+	
 	// --------------------------------------
 
 	var startup = function() {
