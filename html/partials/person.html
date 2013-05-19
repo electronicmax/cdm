@@ -14,7 +14,7 @@
 	<div class="person-photo-container">
 	  <div class="person-photos">
 		<div class="photo-frame" ng-repeat="pic in user.get('portrait')">
-		  <a href="mobile.html#/people/{{ user.id }}/photos"><img ng-src="{{ pic.get_url() }}"></a>
+		  <a href="mobile.html#/people/{{ user.id }}/photos/{{ pic.id }}"><img ng-src="{{ pic.get_url() }}"></a>
 		  <div class="delete" ng-click="delete_from(user,'portrait',pic)"><i class="icon-remove"></i></div>
 		</div>
 	  </div>
