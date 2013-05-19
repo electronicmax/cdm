@@ -1,4 +1,9 @@
 
+        /* override bootstrap navbar */
+        .navbar {
+            margin-bottom: 0px;
+        }
+
         /* shared carousel css */
 
         /* Remove grey bar above photos */
@@ -19,6 +24,8 @@
             width: 100%;
             height: 100%;
             position: absolute;
+            top: 0px;
+            padding-top: 42px;
         }
 
         .carousel_image {
