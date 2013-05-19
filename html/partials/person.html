@@ -1,39 +1,38 @@
 
 <div class='person' ng-show="user">
-  <div class='body'>
+  <div class='body header'>
 	<img class="portrait" ui-if="user.get('portrait')[0]" ng-src="{{ user.get('portrait')[0].get_url() }}"><br>
-	<h4><a ng-click="go('../')">family</a></h4>
-	<h1>{{ user.get('firstname')[0] }} {{ user.get('middlename')[0] }} {{ user.get('lastname')[0] }} 	<a class="edit"  data-toggle="collapse" href="#edit-user-accordion">edit <i class="icon-edit"></i></a> </h1>
-  </div>	
+	<div class="names">
+	  <h4><a ng-click="go('../')">family</a></h4>
+	  <h1>{{ user.get('firstname')[0] }} {{ user.get('middlename')[0] }} {{ user.get('lastname')[0] }} 	<a class="edit"  data-toggle="collapse" href="#edit-user-accordion">edit <i class="icon-edit"></i></a> </h1>
+	  <div class="person-photo-container">
+		<div class="person-photos">
+		  <div class="photo-frame" ng-repeat="i in range(user.get('portrait').length)">
+			<a href="#/people/{{ user.id }}/photos/{{ i }}"><img ng-src="{{ user.get('portrait')[i].get_url() }}"></a>
+			<div class="delete" ng-click="delete_from(user,'portrait',user.get('portrait')[i])"><i class="icon-remove"></i></div>
+		  </div>
+		</div>
+	  </div>	  
+	</div>
+  </div>
   <div id="edit-user-accordion" class="accordion-body collapse">
 	<div class="inner container-fluid">
 	  <modeltable boxideval="box.id" modelideval="user.id"></modeltable>	  
 	</div>
   </div>
   <div class='body'>
-	<div class="person-photo-container">
-	  <div class="person-photos">
-		<div class="photo-frame" ng-repeat="i in range(user.get('portrait').length)">
-		  <a href="#/people/{{ user.id }}/photos/{{ i }}"><img ng-src="{{ user.get('portrait')[i].get_url() }}"></a>
-		  <div class="delete" ng-click="delete_from(user,'portrait',user.get('portrait')[i])"><i class="icon-remove"></i></div>
-		</div>
-	  </div>
-	</div>
 	<div>
 	  <form>
 		<input type="file" accept="image/*;capture=camera" text="hello"></input>
 	  </form>
 	</div>
 
-	<table>
-	  <tr ng-repeat="measurement in measures">
-		<td ng-bind-html-unsafe="measurement.name"></td>
-		<td>
-		  <div ng-show="measurement.value"><i class="icon-okay"></i></div>
-		  <input type="text" ng-model='measurement.value' ui-event="{ blur: 'commit_measurement(measurement)' }">
-		</td>
-	  </tr>
-	</table>
+	<div class="measurement" ng-repeat="measurement in measures">
+	  <div ng-bind-html-unsafe="measurement.name"></div>
+	  <div ng-show="measurement.value"><i class="icon-okay"></i>
+		<input type="text" ng-model='measurement.value' ui-event="{ blur: 'commit_measurement(measurement)' }">
+	  </div>
+	</div>
   </div>
 </div>
 

@@ -1,22 +1,29 @@
 .person {
-	margin:-20px 0px 0px 0px; padding:0px !important;
+	margin:-2px 0px 0px 0px; padding:0px !important;
 	.body {
-		border:1px solid pink;
+		&.header  {
+			min-height:240px;
+		}
 		position:relative;
+		border:1px solid orange;
 		margin: 0px auto 0px auto !important;
 		max-width:800px;
-
-		// padding:0px 40px 0px 40px;        
+		@picwidth: 150px;
 		.portrait {
 			position:absolute;
 			top:20px;
-			right:50px;
+			left:0px;
 			background:white;
-			width:240px;
+			width:@picwidth;
 			padding:8px;			
 			border:1px solid #eee;
 			margin:0px 30px 0px 0px;
 			box-shadow: 0px 4px 15px #999;			  
+		}
+		.names {
+			position:absolute;
+			top:20px;
+			left:@picwidth + 20;			
 		}
 		h1 {
 			padding:0px;
@@ -129,6 +136,14 @@
 		  height:600px;
 	  }
   }
-	
+  .measurement {
+	  min-height:100px;
+	  margin:10px !important;
+	  border: 0.5px solid rgba(0,0,0,0.2);
+	  background:rgba(255,255,255,0.5);
+	  vertical-align:middle;
+	  box-shadow: 0px 3px 5px #999;
+	  padding:10px;
+  }	
 }
 
