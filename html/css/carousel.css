@@ -94,6 +94,7 @@
 
 
 		.closeback {
+            z-index: 50;			
 			position: absolute;
 			opacity: 0.3;
 			top: 25px;
