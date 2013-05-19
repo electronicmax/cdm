@@ -1,3 +1,27 @@
+
+        /* Remove grey bar above photos */
+        #carousel > ul li {
+            display: block; /* override display: list-item */
+        }
+
+
+        #carousel, #carousel ul, #carousel li {
+            min-height: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .carousel_image {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: 0px;
+            background-position: center;
+        }
+
         #carousel {
             background: silver;
             overflow: hidden;

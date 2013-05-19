@@ -1,3 +1,12 @@
+        .carousel_image {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: 0px;
+            background-position: center;
+        }
+
 
         html, body, #carousel, #carousel ul, #carousel li {
             min-height: 100%;
