@@ -1,4 +1,7 @@
 
+        /* shared carousel css */
+
+
         /* Remove grey bar above photos */
         #carousel > ul li {
             display: block; /* override display: list-item */
@@ -25,8 +28,8 @@
         #carousel {
             background: silver;
             overflow: hidden;
-            width: 800px;
-            height: 600px;
+            width: 1024px;
+            height: 768px;
             -webkit-backface-visibility: hidden;
             -webkit-transform: translate3d(0,0,0) scale3d(1,1,1);
             -webkit-transform-style: preserve-3d;
