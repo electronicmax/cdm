@@ -2,7 +2,7 @@
 	margin:-2px 0px 0px 0px; padding:0px !important;
 	.body {
 		&.header  {
-			min-height:240px;
+			min-height:260px;
 		}
 		position:relative;
 		border:1px solid orange;
@@ -15,62 +15,68 @@
 			left:0px;
 			background:white;
 			width:@picwidth;
+			height:220px;
 			padding:8px;			
 			border:1px solid #eee;
 			margin:0px 30px 0px 0px;
-			box-shadow: 0px 4px 15px #999;			  
+			box-shadow: 0px 4px 15px #999;			
+			background-position: no-repeat center center;
+			-webkit-background-size: cover !important;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
 		}
 		.names {
 			position:absolute;
 			top:20px;
-			left:@picwidth + 20;			
+			left:@picwidth + 20;
+			h4 {
+				margin:10px 0px 0px 0px !important;
+			}
+			h1 {
+				padding:0px;
+				margin:0px 0px 0px -4px !important;
+			}			
 		}
-		h1 {
-			padding:0px;
-			line-height:24px !important;
-			margin:0px 0px 0px -4px !important;
-		}
-		h4 {
-			padding:0px; margin:0px 0px 10px 0px;
-		}
-	}
-	.person-photo-container{
-	   max-width:1000px;
-	   overflow-x:scroll;
-	   overflow-y:hidden;
-	   .person-photos {
-		   margin:0px !important;
-		   padding:0px !important;
-		   height:230px;
-		   min-width:2000px;
-		   input {  font-size:0pt;   }
-		   .photo-frame {
-			   display:inline-block;
-			   position:relative;
-			   transition: all 0.5s ease;
-			   -o-transition: all 0.5s ease;
-			   -moz-transition: all 0.5s ease;
-			   -webkit-transition: all 0.5s ease;
-			   img {
-				   height:120px;
-				   box-shadow: 0px 4px 15px #999;			  
-			   }
-			   .delete {
-				   position:absolute;
-				   top:5px; right:5px;
-				   display:none;
-			   }
-			   &:hover .delete { display:block; }
-			   &:hover {
-				   transform-origin:0px 0px;
-				   -webkit-transform-origin:0px 0px;
-				   -webkit-transform: scale(1.7,1.7);
-				   z-index:100;
-			   }
-			   margin:40px 2px 40px 2px;
-			   padding: 0px 2px 0px 2px;
-			   border: 0.5px solid #eee;
-		   }
+		.person-photo-container{
+			max-width:600px;
+			overflow-x:scroll;
+			overflow-y:hidden;
+			margin:19px 2px 40px 2px;
+			
+			.person-photos {
+				margin:0px !important;
+				padding:0px !important;
+				height:230px;
+				min-width:2000px;
+				input {  font-size:0pt;   }
+				.photo-frame {
+					display:inline-block;
+					position:relative;
+					transition: all 0.5s ease;
+					-o-transition: all 0.5s ease;
+					-moz-transition: all 0.5s ease;
+					-webkit-transition: all 0.5s ease;
+					img {
+						height:120px;
+						box-shadow: 0px 4px 15px #999;			  
+					}
+					.delete {
+						position:absolute;
+						top:5px; right:5px;
+						display:none;
+					}
+					&:hover .delete { display:block; }
+					&:hover {
+						transform-origin:0px 0px;
+						-webkit-transform-origin:0px 0px;
+						-webkit-transform: scale(1.7,1.7);
+						z-index:100;
+					}
+					padding: 0px 2px 0px 2px;
+					border: 0.5px solid #eee;
+				}
+			}
 		}
 	}
 	.edit {	font-size:10pt;	}
