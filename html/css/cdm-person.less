@@ -3,9 +3,10 @@
 	.body {
 		border:1px solid pink;
 		position:relative;
-		margin: 0px !important;
-		max-width:100%;
-		padding:0px 40px 0px 40px;        
+		margin: 0px auto 0px auto !important;
+		max-width:800px;
+
+		// padding:0px 40px 0px 40px;        
 		.portrait {
 			position:absolute;
 			top:20px;
@@ -31,9 +32,9 @@
 	   overflow-x:scroll;
 	   overflow-y:hidden;
 	   .person-photos {
-		   border:0.5px solid #eee;
-		   padding:3px 0px 0px 28px;
-		   height:220px;
+		   margin:0px !important;
+		   padding:0px !important;
+		   height:230px;
 		   min-width:2000px;
 		   input {  font-size:0pt;   }
 		   .photo-frame {
@@ -54,6 +55,8 @@
 			   }
 			   &:hover .delete { display:block; }
 			   &:hover {
+				   transform-origin:0px 0px;
+				   -webkit-transform-origin:0px 0px;
 				   -webkit-transform: scale(1.7,1.7);
 				   z-index:100;
 			   }
