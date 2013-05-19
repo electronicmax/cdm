@@ -4,7 +4,9 @@
 	<img class="portrait" ui-if="user.get('portrait')[0]" style="background: url('{{ user.get('portrait')[0].get_url() }}')"><br>
 	<div class="names">
 	  <h4><a ng-click="go('../')">family</a></h4>
-	  <h1>{{ user.get('firstname')[0] }} {{ user.get('middlename')[0] }} {{ user.get('lastname')[0] }} 	<a class="edit"  data-toggle="collapse" href="#edit-user-accordion">edit <i class="icon-edit"></i></a> </h1>
+	  <h1>{{ user.get('firstname')[0] }} {{ user.get('middlename')[0] }} {{ user.get('lastname')[0] }} <img class='camera-icon' onclick="$('#take_image').click()" src="imgs/icon-camera.png"> </h1>
+		<!-- <a class="edit"  data-toggle="collapse" href="#edit-user-accordion">edit <i class="icon-edit"></i>-->
+
 	  <div class="person-photo-container">
 		<div class="person-photos">
 		  <div class="photo-frame" ng-repeat="i in range(user.get('portrait').length)">
@@ -12,7 +14,10 @@
 			<div class="delete" ng-click="delete_from(user,'portrait',user.get('portrait')[i])"><i class="icon-remove"></i></div>
 		  </div>
 		</div>
-	  </div>	  
+	  </div><!-- person photo container -->
+	  <form>
+		<input type="file" id="take_image" accept="image/*;capture=camera" text="hello"></input>
+	  </form>
 	</div>
   </div>
   <div id="edit-user-accordion" class="accordion-body collapse">
@@ -21,12 +26,6 @@
 	</div>
   </div>
   <div class='body'>
-	<div>
-	  <form>
-		<input type="file" accept="image/*;capture=camera" text="hello"></input>
-	  </form>
-	</div>
-
 	<div class="measurement" ng-repeat="measurement in measures">
 	  <div ng-bind-html-unsafe="measurement.name"></div>
 	  <div><i ng-show="measurement.value" class="icon-okay"></i>
