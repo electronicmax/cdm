@@ -82,7 +82,7 @@
 		  <div class="photo" ui-if="person.get('portrait')[0]"
 			   style="background-image: url('{{ person.get('portrait')[0].get_url() }}')">
 		</div>
-		<h4 class='name' ng-bind-html-unsafe="person.get('firstname')[0]"></h4>
+		<h4 class='name' ng-bind-html-unsafe="person.get('firstname')[0] | lowercase"></h4>
 	  </a>
 	</li>
   </ul>
