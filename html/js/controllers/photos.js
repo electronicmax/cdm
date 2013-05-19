@@ -196,13 +196,21 @@ function PhotosController($scope, $location, webbox, $routeParams){
 				console.log("I GOT A CHANGE ON USER -- ");
 				var carousel = new Carousel("#carousel", "#main-carousel");
 				carousel.init();
-                if (jump_to_last){
+
+                if (!("jumped_to_photo" in $scope) && "photoIndex" in $routeParams){
+                    // if there's a url parameter to jump to, and we've never done it, then jump now
+                    console.debug("JUMP NOW");
+
+                    carousel.showPane($routeParams.photoIndex);
+                    $scope['jumped_to_photo'] = true;
+                } else if (jump_to_last){
                     carousel.showLast();
                 }
 			});
         }
 
         $scope.$watch('user.attributes.portrait', function(){
+            // this gets called immediately on load, once the data is in
             update_carousel($scope, false);
         });
 
@@ -210,8 +218,6 @@ function PhotosController($scope, $location, webbox, $routeParams){
             // when portraits are updated in the box, update the carousel
             update_carousel($scope, true);
         });
-        // initial carousel
-        update_carousel($scope, false);
 
 	};
 	

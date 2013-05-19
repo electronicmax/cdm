@@ -10,6 +10,7 @@ var app = angular
 			.when('/people', { templateUrl: 'partials/people.html', controller:'PeopleController'})
 			.when('/people/:personId', { templateUrl: 'partials/person.html', controller:'PersonController'})
 			.when('/people/:personId/photos', { templateUrl: 'partials/photos.html', controller:'PhotosController'})
+			.when('/people/:personId/photos/:photoIndex', { templateUrl: 'partials/photos.html', controller:'PhotosController'})
 			.when('/people/:personId/add/property', { templateUrl: 'partials/add_property.html', controller:'AddProperty'})
 			.when('/people/:personId/add/measurement', { templateUrl: 'partials/add_measurement.html', controller:'AddMeasurement'})
 			.when('/people/:personId/:viewID', { templateUrl: 'partials/view.html', controller:'ViewController'})
