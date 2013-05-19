@@ -95,36 +95,38 @@
 
 
         /* next/prev */
-        .carousel-left {
-            position: absolute;
-            left: 5px;
-            top: 50%;
+		.carousel-left, .carousel-right {
+			position: absolute;
+			top: 50%;
             margin-top: -50px; /* half the height of the circle */
             z-index: 50;
-            opacity: 0.7;
+            opacity: 0.3;
             cursor: pointer;
+			transition: all 0.4s ease;
+			-o-transition: all 0.4s ease;
+			-moz-transition: all 0.4s ease;
+			-webkit-transition: all 0.4s ease;
+		}
+        .carousel-left {
+            left: 5px;
+            margin-top: -50px; /* half the height of the circle */
         }
         .carousel-right {
-            position: absolute;
             right: 5px;
-            top: 50%;
-            margin-top: -50px; /* half the height of the circle */
-            z-index: 50;
-            opacity: 0.7;
-            cursor: pointer;
         }
-
+		.carousel-left:hover, .carousel-right:hover {
+			opacity:0.6;
+		}
         /* shapes for the next/prev */
         .circle {
             width: 100px;
             height: 100px;
-            background: silver;
+            background: silver; 
             -moz-border-radius: 50px;
             -webkit-border-radius: 50px;
             border-radius: 50px;
-            border: 1px solid white;
-        }
-
+            /* border: 0.5px solid white; */
+        }		
         .triangle-left {
             width: 0;
             height: 0;
