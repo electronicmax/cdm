@@ -1,6 +1,6 @@
 
         /* make the carousel the whole viewport */
-        html, body, #carousel, #carousel ul, #carousel li {
+        html, body, #carousel, #carousel ul, #carousel li, .carousel_container {
             min-height: 100%;
             height: 100%;
             padding: 0;

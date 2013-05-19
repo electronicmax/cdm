@@ -92,6 +92,9 @@ function PhotosController($scope, $location, webbox, $routeParams){
                 setContainerOffset(offset, true);
             };
 
+            this.showLast = function(){
+                this.showPane(this.pane_count-1)
+            }
 
             function setContainerOffset(percent, animate) {
                 container.removeClass("animate");
@@ -169,24 +172,27 @@ function PhotosController($scope, $location, webbox, $routeParams){
         }
 
 
-        function update_carousel($scope){
+        function update_carousel($scope, jump_to_last){
 			safe_apply($scope, function() {
 				console.log("I GOT A CHANGE ON USER -- ");
 				var carousel = new Carousel("#carousel");
 				carousel.init();
+                if (jump_to_last){
+                    carousel.showLast();
+                }
 			});
         }
 
         $scope.$watch('user.attributes.portrait', function(){
-            update_carousel($scope);
+            update_carousel($scope, false);
         });
 
 		$scope.user.on('change:portrait', function() {
-            update_carousel($scope);
+            // when portraits are updated in the box, update the carousel
+            update_carousel($scope, true);
         });
         // initial carousel
-        var carousel = new Carousel("#carousel");
-        carousel.init();
+        update_carousel($scope, false);
 
 	};
 	

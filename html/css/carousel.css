@@ -8,7 +8,7 @@
         }
 
 
-        #carousel, #carousel ul, #carousel li {
+        #carousel, #carousel ul, #carousel li, .carousel-container {
             min-height: 100%;
             height: 100%;
             padding: 0;
@@ -82,4 +82,45 @@
         #carousel li.pane3 { background: #d06b64; }
         #carousel li.pane4 { background: #cd74e6; }
         #carousel li.pane5 { background: #9fe1e7; }
+
+
+        /* next/prev */
+        .carousel-left {
+            position: absolute;
+            left; 0px;
+            top: 50%;
+            margin-top: -50px; /* half the height of the circle */
+            z-index: 50;
+            opacity: 0.7;
+        }
+
+        /* shapes for the next/prev */
+        .circle {
+            width: 100px;
+            height: 100px;
+            background: silver;
+            -moz-border-radius: 50px;
+            -webkit-border-radius: 50px;
+            border-radius: 50px;
+            padding: 25px 0px 0px 20px;
+            border: 1px solid white;
+        }
+
+        .triangle-left {
+            width: 0;
+            height: 0;
+            border-top: 25px solid transparent;
+            border-right: 50px solid white;
+            border-bottom: 25px solid transparent;
+        }
+
+        .triangle-right {
+            width: 0;
+            height: 0;
+            border-top: 50px solid transparent;
+            border-left: 100px solid red;
+            border-bottom: 50px solid transparent;
+        }
+
+
 
