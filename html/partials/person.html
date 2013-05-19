@@ -17,7 +17,8 @@
   </div>
   <div id="edit-user-accordion" class="accordion-body collapse">
 	<div class="inner container-fluid">
-	  <modeltable boxideval="box.id" modelideval="user.id"></modeltable>	  
+	  <modeltable box="box" model="user"></modeltable>
+	  <div ng-bind-html-unsafe="user.id"></div>
 	</div>
   </div>
   <div class='body'>

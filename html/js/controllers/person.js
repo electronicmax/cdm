@@ -7,7 +7,6 @@ function PersonController($scope, $location, webbox, $routeParams){
 		for (var i = l; i < h; i++) { a.push(i); }
 		return a;
 	};
-
 	$scope.go = function(path) {
 		console.log('go event ', path);
 		safe_apply($scope, function() {	$location.path(path); });
@@ -92,6 +91,7 @@ function PersonController($scope, $location, webbox, $routeParams){
 				safe_apply($scope, function() {
 					u.log('fetched user ', fetched_user.id);
 					user = $scope.user = fetched_user;
+					console.log('setting $scope.user ', $scope.user);
 					startup();
 				});
 			});
