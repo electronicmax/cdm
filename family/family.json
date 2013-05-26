@@ -1,0 +1,238 @@
+[
+  {
+    "@id": "David__Smith", 
+    "firstname": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "David"
+      }
+    ], 
+    "lastname": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Smith"
+      }
+    ], 
+    "birthday": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "1956-05-04"
+      }
+    ], 
+    "gender": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Male"
+      }
+    ], 
+    "portrait": [
+      {
+        "@language": "image/jpeg", 
+        "@type": "webbox-file", 
+        "@value": "david.jpg"
+      }
+    ], 
+    "height": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "[{\"measurement_type\":\"weight\",\"value\":\"182\",\"timestamp\":1368396840727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"182\",\"timestamp\":1368483240727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"182\",\"timestamp\":1368569640727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"182\",\"timestamp\":1368656040727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"182\",\"timestamp\":1368742440727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"182\",\"timestamp\":1368828840727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"182\",\"timestamp\":1368915240727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"182\",\"timestamp\":1369001640727,\"units\":\"cm\"}]"
+      }
+    ], 
+    "weight": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "[{\"measurement_type\":\"weight\",\"value\":\"63\",\"timestamp\":1368396840727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"64\",\"timestamp\":1368483240727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"64.5\",\"timestamp\":1368569640727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"64\",\"timestamp\":1368656040727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"65.5\",\"timestamp\":1368742440727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"65.0\",\"timestamp\":1368828840727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"64\",\"timestamp\":1368915240727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"63.5\",\"timestamp\":1369001640727,\"units\":\"kg\"}]"
+      }
+    ], 
+    "type": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "person"
+      }
+    ]
+  }, 
+  {
+    "@id": "Susan__Smith", 
+    "weight": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "[{\"measurement_type\":\"weight\",\"value\":\"53\",\"timestamp\":1368396840727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"53.5\",\"timestamp\":1368483240727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"53\",\"timestamp\":1368569640727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"52\",\"timestamp\":1368656040727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"52.5\",\"timestamp\":1368742440727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"51.0\",\"timestamp\":1368828840727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"50\",\"timestamp\":1368915240727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"53\",\"timestamp\":1369001640727,\"units\":\"kg\"}]"
+      }
+    ], 
+    "height": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "[{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368396840727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368483240727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368569640727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368656040727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368742440727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368828840727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368915240727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1369001640727,\"units\":\"cm\"}]"
+      }
+    ], 
+    "firstname": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Susan"
+      }
+    ], 
+    "lastname": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Smith"
+      }
+    ], 
+    "birthday": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "1959-01-18"
+      }
+    ], 
+    "gender": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Female"
+      }
+    ], 
+    "portrait": [
+      {
+        "@language": "image/png", 
+        "@type": "webbox-file", 
+        "@value": "portrait-Susan__Smith"
+      }
+    ], 
+    "type": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "person"
+      }
+    ]
+  }, 
+  {
+    "@id": "Michael__Smith", 
+    "firstname": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Michael"
+      }
+    ], 
+    "lastname": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Smith"
+      }
+    ], 
+    "birthday": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "1987-06-05"
+      }
+    ], 
+    "gender": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Male"
+      }
+    ], 
+    "portrait": [
+      {
+        "@language": "image/jpeg", 
+        "@type": "webbox-file", 
+        "@value": "portrait-Michael__Smith"
+      }
+    ], 
+    "height": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "[{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368396840727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368483240727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"163\",\"timestamp\":1368569640727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"163\",\"timestamp\":1368656040727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"163.5\",\"timestamp\":1368742440727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"163.5\",\"timestamp\":1368828840727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"164\",\"timestamp\":1368915240727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"164\",\"timestamp\":1369001640727,\"units\":\"cm\"}]"
+      }
+    ], 
+    "weight": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "[{\"measurement_type\":\"weight\",\"value\":\"60\",\"timestamp\":1368396840727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"59.5\",\"timestamp\":1368483240727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"60.4\",\"timestamp\":1368569640727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"60.2\",\"timestamp\":1368656040727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"62.5\",\"timestamp\":1368742440727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"63.0\",\"timestamp\":1368828840727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"61.0\",\"timestamp\":1368915240727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"62.0\",\"timestamp\":1369001640727,\"units\":\"kg\"}]"
+      }
+    ], 
+    "type": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "person"
+      }
+    ]
+  }, 
+  {
+    "@id": "Elizabeth__Smith", 
+    "weight": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "[{\"measurement_type\":\"weight\",\"value\":\"52\",\"timestamp\":1368396840727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"53.5\",\"timestamp\":1368483240727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"51\",\"timestamp\":1368569640727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"51.5\",\"timestamp\":1368656040727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"51.0\",\"timestamp\":1368742440727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"50.0\",\"timestamp\":1368828840727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"50.5\",\"timestamp\":1368915240727,\"units\":\"kg\"},{\"measurement_type\":\"weight\",\"value\":\"51.0\",\"timestamp\":1369001640727,\"units\":\"kg\"}]"
+      }
+    ], 
+    "firstname": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Elizabeth"
+      }
+    ], 
+    "lastname": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Smith"
+      }
+    ], 
+    "height": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "[{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368396840727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368483240727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368569640727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368656040727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368742440727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368828840727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1368915240727,\"units\":\"cm\"},{\"measurement_type\":\"weight\",\"value\":\"162\",\"timestamp\":1369001640727,\"units\":\"cm\"}]"
+      }
+    ], 
+    "birthday": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "1975-09-04"
+      }
+    ], 
+    "gender": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "Female"
+      }
+    ], 
+    "portrait": [
+      {
+        "@language": "image/jpeg", 
+        "@type": "webbox-file", 
+        "@value": "portrait-Elizabeth__Smith"
+      }
+    ], 
+    "type": [
+      {
+        "@language": "", 
+        "@type": "", 
+        "@value": "person"
+      }
+    ]
+  } 
+]
