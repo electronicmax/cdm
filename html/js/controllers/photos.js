@@ -187,6 +187,18 @@ function PhotosController($scope, $location, webbox, $routeParams){
                 console.debug("prev click");
                 self.prev();
             });
+			$(document).on('keydown', function(evt) {
+				if (main_container.is(":visible")) {
+					if (evt.keyCode == 37) { self.prev(); }
+					if (evt.keyCode == 39) { self.next(); }
+					if (evt.keyCode == 27) {
+						// escape to close
+						$scope.$apply(function() {
+							$location.path($location.path().split('/').slice(0,-2).join('/'));
+						});
+					}					
+				}
+			});
 
         }
 

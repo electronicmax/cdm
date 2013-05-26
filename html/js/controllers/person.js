@@ -8,7 +8,7 @@ function PersonController($scope, $location, webbox, $routeParams){
 		return a;
 	};
 	$scope.go = function(path) {
-		console.log('go event ', path);
+		// console.log('go event ', path);
 		safe_apply($scope, function() {	$location.path(path); });
 	};
 	$scope.delete_from = function(obj, property, value) {
