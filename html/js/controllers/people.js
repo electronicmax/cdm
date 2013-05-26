@@ -95,8 +95,8 @@ function PeopleController($scope, $routeParams, $location, webbox) {
 		// todo replace with query::
 		if (box === undefined) { box = store.get_box('cdm');  }
 		u.when(box.get_obj_ids().map(function(id)  { return box.get_obj(id); }))
-			.then(function() {
-				var objs = _.toArray(arguments).filter(function(x) {
+			.then(function(objs) {
+				objs = objs.filter(function(x) {
 					return x.get('type') && x.get('type').indexOf('person') >= 0;
 				});
 				safe_apply($scope, function() {
