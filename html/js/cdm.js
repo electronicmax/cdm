@@ -20,13 +20,17 @@ var app = angular
 	})
 	.factory('webbox',function($location) {
 		var exports = {};
-		var d = exports.loaded = new $.Deferred();
+		var d = exports.loaded = new $.Deferred();		
 		exports.safe_apply = function($scope, fn) {
-			if ($scope.$$phase !== undefined) {
-				return fn();
-			}
-			$scope.$apply(fn);
-		};		
+			setTimeout(function() { $scope.$apply(fn); }, 0);
+		};
+		// this version (given in docs) just doesn't work:		
+		// exports.safe_apply = function($scope, fn) {
+		// 	if ($scope.$$phase !== undefined) {
+		// 		return fn();
+		// 	}
+		// 	$scope.$apply(fn);
+		// };		
 		WebBox.load().then(function() {
 			exports.u = window.u = WebBox.utils;
 			exports.WebBox = WebBox; // for logging in etc

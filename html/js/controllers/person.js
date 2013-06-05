@@ -1,6 +1,6 @@
 
 function PersonController($scope, $location, webbox, $routeParams){
-	var box;
+	var box, safe_apply = webbox.safe_apply;
 	$scope.range = function(l,h) {
 		var a = [];
 		if (_.isUndefined(h)) { h = l; l = 0; }
@@ -36,8 +36,7 @@ function PersonController($scope, $location, webbox, $routeParams){
 	};
 	$scope.formatValue = function(x) {
 		return x + '';
-	};
-	
+	};	
 	// under construction -------------
 	$scope.commit_measurement = function(user,measurement) {
 		// console.log('need to commit measurement ', measurement, measurement.value);
@@ -45,13 +44,9 @@ function PersonController($scope, $location, webbox, $routeParams){
 		// console.log(' new reading > ', new_reading);
 		var vals = $scope.get_user_measurements(user, measurement.property);
 		vals.push(new_reading);
-		// console.log('NEW READING ', vals.length);
-		setTimeout(function() {
-			user.set(measurement.property, JSON.stringify(vals));
-			user.save();
-			$('input[measurement="'+measurement.name+'"]').val('');
-		}, 0);
-		
+		user.set(measurement.property, JSON.stringify(vals));
+		user.save();
+		$('input[measurement="'+measurement.name+'"]').val('');
 	};
 	
 	var make_measurements = function(scope) {
@@ -109,7 +104,6 @@ function PersonController($scope, $location, webbox, $routeParams){
 		$scope.user.on('change:portrait', function() {
 			safe_apply($scope, function() { console.log("no op!"); });					
 		});
-
 	};
 	
 	_webbox_controller_login(webbox).then(function(user) {
