@@ -1,6 +1,6 @@
 
 ## 
-#    This file is part of CDM for WebBox
+#    This file is part of CDM for INDX
 #
 #    Copyright 2013-2014 Max Van Kleek, Daniel A. Smith
 #    Copyright 2013-2014 PINCH, Inc.
@@ -8,8 +8,8 @@
 
 import logging, traceback, json, re
 from twisted.web.resource import Resource
-from webbox.webserver.handlers.base import BaseHandler
-from webbox.objectstore_async import ObjectStoreAsync
+from indx.webserver.handlers.base import BaseHandler
+from indx.objectstore_async import ObjectStoreAsync
 from twisted.internet.defer import Deferred
 from twisted.web.server import NOT_DONE_YET
 
